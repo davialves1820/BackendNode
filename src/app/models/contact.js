@@ -1,11 +1,11 @@
 import Sequelize, { Model } from "sequelize";
 
-class Contract extends Model {
+class Contact extends Model {
     static init(sequelize) {
         super.init({
             name: Sequelize.STRING,
             email: Sequelize.STRING,
-            status: Sequelize.ENUM("active", "archived"),
+            //status: Sequelize.ENUM("active", "archived"),
         },
         {
             sequelize,
@@ -17,4 +17,4 @@ class Contract extends Model {
     }
 }
 
-export default Contract;
+export default Contact;

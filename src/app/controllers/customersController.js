@@ -1,3 +1,5 @@
+import Customer from '../models/customer.js';
+
 let customers = [
             { id: 1, name: 'Alice' },
             { id: 2, name: 'Bob' }
@@ -6,8 +8,17 @@ let customers = [
 class customersController {
 
     // List all customers
-    index(req, res) {
-        return res.json(customers);
+    async index(req, res) {
+        try {
+            const data = await Customer.findAll({
+                limit: 1000
+            });
+            return res.json(data);
+        } catch (error) {
+            console.error("Error fetching customers:", error);
+        }
+        
+        
     }
 
     // Show a specific customer by ID

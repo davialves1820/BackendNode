@@ -5,11 +5,13 @@ class Customer extends Model {
         super.init({
             name: Sequelize.STRING,
             email: Sequelize.STRING,
-            status: Sequelize.ENUM("active", "archived"),
+            //status: Sequelize.ENUM("active", "archived"),
         },
         {
             sequelize,
+            tableName: "customers",
         });
+        return this;
     }
 
     static associate(models) {
