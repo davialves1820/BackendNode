@@ -1,9 +1,9 @@
 import { Sequelize } from "sequelize";
 import config from "../config/database.js";
 
-import User from "../app/models/user.js";
+import User from "../app/models/User.js";
 import Customer from "../app/models/customer.js";
-import Contact from "../app/models/contact.js";
+import Contact from "../app/models/Contact.js";
 
 const models = [User, Customer, Contact];
 
