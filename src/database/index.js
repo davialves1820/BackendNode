@@ -11,12 +11,15 @@ class Database {
     constructor() {
         this.connection = new Sequelize(config);
         this.init();
+        this.associate();
     }
 
     init() {
         // Inicializa todos os models
         models.forEach(model => model.init(this.connection));
+    }
 
+    associate() {
         // Executa associate se existir
         models.forEach(model => {
             if (model.associate) {

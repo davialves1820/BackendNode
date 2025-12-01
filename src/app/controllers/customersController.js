@@ -1,4 +1,7 @@
+import { Op } from 'sequelize';
+import { ParseIso } from "date-fns";
 import Customer from '../models/customer.js';
+import Contact from '../models/Contact.js';
 
 let customers = [
             { id: 1, name: 'Alice' },
@@ -9,9 +12,74 @@ class customersController {
 
     // List all customers
     async index(req, res) {
+        const {name, email, status, createdBefore, createdAfter, updatedBefore, updatedAfter, sort} = req.query;
+
+        const page = req.query.page ? parseInt(req.query.page) : 1;
+        const limit = req.query.limit ? parseInt(req.query.limit) : 25;
+        
+        let where = {};
+        let order = [];
+
+        if (name) {
+            where = { ...where, name: {
+                [Op.iLike]: name,
+            } };
+        }
+
+        if (email) {
+            where = { ...where, email: {
+                [Op.iLike]: email,
+            } };
+        }
+
+        if (status) {
+            where = { ...where, status: {
+                [Op.in]: status.split(',').map(item => item.toUpperCase()),
+            } };
+        }
+
+        if (createdBefore) {
+            where = { ...where, createdAt: {
+                [Op.gte]: ParseIso(createdBefore),
+            } };
+        }
+
+        if (createdAfter) {
+            where = { ...where, createdAt: {
+                [Op.gte]: ParseIso(createdAfter),
+            } };
+        }
+
+        if (updatedBefore) {
+            where = { ...where, createdAt: {
+                [Op.gte]: ParseIso(updatedBefore),
+            } };
+        }
+
+        if (updatedAfter) {
+            where = { ...where, createdAt: {
+                [Op.gte]: ParseIso(updatedAfter),
+            } };
+        }
+
+        console.log(where);
+
+        if (sort) {
+            order = sort.split(',').map(item => item.split(':'));
+        }
+
         try {
             const data = await Customer.findAll({
-                limit: 1000
+                where,
+                include: [
+                    {
+                        model: Contact,
+                        attributes: ['id', 'status'],
+                    },
+                ],
+                order,
+                limit,
+                offset: limit * page - limit,
             });
             return res.json(data);
         } catch (error) {
