@@ -58,8 +58,6 @@ class customersController {
             } };
         }
 
-        console.log(where);
-
         if (sort) {
             order = sort.split(',').map(item => item.split(':'));
         }
@@ -79,21 +77,29 @@ class customersController {
             });
             return res.json(data);
         } catch (error) {
-            console.error("Error fetching customers:", error);
+            return res.status(500).json({
+                error: err?.message,
+                original: err?.original,
+            });
         }
-        
-        
     }
 
     // Show a specific customer by ID
     async show(req, res) {
-        const customer = await Customer.findByPk(req.params.id);
+        try {
+            const customer = await Customer.findByPk(req.params.id);
 
-        if (!customer) {
-            return res.status(404).json({ error: 'Customer not found' });
+            if (!customer) {
+                return res.status(404).json({ error: 'Customer not found' });
+            }
+
+            return res.json(customer); // Retorna o cliente criado com status 201
+        } catch (error) {
+            return res.status(500).json({
+                error: err?.message,
+                original: err?.original,
+            });
         }
-
-        return res.json(customer); // Retorna o cliente criado com status 201
     }
 
     // Create a new customer
@@ -121,7 +127,6 @@ class customersController {
             });
         }
     }
-
 
     // Update an existing customer by ID
     async update(req, res) {
@@ -152,16 +157,24 @@ class customersController {
     }  
 
     // Delete a customer by ID
-    delete(req, res) {
-        const id = parseInt(req.params.id); // Extrai o id dos parâmetros da rota
-        const index = customers.findIndex(item => item.id === id); // Encontra o índice do cliente a ser deletado
-        const status = index >= 0 ? 200 : 400; // Define o status com base na existência do cliente
+    async delete(req, res) {
 
-        if (index >= 0) {
-            customers.splice(index, 1); // Remove o cliente do array
+        try {
+            const customer = await Customer.findByPk(req.params.id);
+
+            if (!customer) {
+                return res.status(404).json({ error: 'Customer not found' });
+            }
+
+            await customer.destroy();
+
+            return res.status(201).json("customer deleted");
+        } catch (err) {
+            return res.status(500).json({
+                error: err?.message,
+                original: err?.original,
+            });
         }
-
-        return res.status(status).json(); // Retorna uma resposta vazia
     }
 }
 
