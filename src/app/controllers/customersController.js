@@ -1,12 +1,8 @@
+import * as Yup from 'yup';
 import { Op } from 'sequelize';
 import { ParseIso } from "date-fns";
 import Customer from '../models/customer.js';
 import Contact from '../models/Contact.js';
-
-let customers = [
-            { id: 1, name: 'Alice' },
-            { id: 2, name: 'Bob' }
-        ]; // Array to store customers
 
 class customersController {
 
@@ -90,24 +86,42 @@ class customersController {
     }
 
     // Show a specific customer by ID
-    show(req, res) {
-        const id = parseInt(req.params.id)  // Extrai id e name do corpo da requisição
-        const customer = customers.find(item => item.id === id); // Verifica se o cliente já existe
-        const status = customer ? 200 : 400; // Define o status com base na existência do cliente
+    async show(req, res) {
+        const customer = await Customer.findByPk(req.params.id);
 
-        return res.status(status).json(customer); // Retorna o cliente criado com status 201
+        if (!customer) {
+            return res.status(404).json({ error: 'Customer not found' });
+        }
+
+        return res.json(customer); // Retorna o cliente criado com status 201
     }
 
     // Create a new customer
-    create(req, res) {
-        const { name } = req.body; // Extrai id e name do corpo da requisição
-        const id = customers[customers.length - 1].id + 1; // Gera o próximo id
+    async create(req, res) {
+        try {
+            const schema = Yup.object().shape({
+                name: Yup.string().required(),
+                email: Yup.string().email().required(),
+                status: Yup.string().required(),
+            });
 
-        const new_customer = { id, name }; // Cria um novo cliente
-        this.customers.push(new_customer); // Adiciona o novo cliente ao array
-        
-        return res.status(201).json(new_customer); // Retorna o cliente criado com status 201
+            await schema.validate(req.body, { abortEarly: false });
+
+            const customer = await Customer.create({
+                name: req.body.name,
+                email: req.body.email,
+                status: req.body.status,
+            });
+
+            return res.status(201).json(customer);
+        } catch (err) {
+            return res.status(500).json({
+                error: err?.message,
+                original: err?.original,
+            });
+        }
     }
+
 
     // Update an existing customer by ID
     update(req, res) {
