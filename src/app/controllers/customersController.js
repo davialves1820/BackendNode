@@ -124,19 +124,31 @@ class customersController {
 
 
     // Update an existing customer by ID
-    update(req, res) {
-        const id = parseInt(req.params.id); // Extrai o id dos parâmetros da rota
-        const { name } = req.body; // Extrai o nome do corpo da requisição
-        
-        // Encontra o índice do cliente a ser atualizado
-        const index = customers.findIndex(item => item.id === id);
-        const status = index >= 0 ? 200 : 400; // Define o status com base na existência do cliente
+    async update(req, res) {
+        try {
+            const schema = Yup.object().shape({
+                name: Yup.string(),
+                email: Yup.string().email(),
+                status: Yup.string().uppercase(),
+            });
 
-        if (index >= 0) {
-            customers[index].name = name; // Atualiza o nome do cliente
+            await schema.validate(req.body, { abortEarly: false });
+
+            const customer = await Customer.findByPk(req.params.id);
+
+            if (!customer) {
+                return res.status(404).json({ error: 'Customer not found' });
+            }
+
+            await customer.update(req.body);
+
+            return res.status(201).json(customer);
+        } catch (err) {
+            return res.status(500).json({
+                error: err?.message,
+                original: err?.original,
+            });
         }
-
-        return res.status(status).json(customers[index]); // Retorna o cliente atualizado
     }  
 
     // Delete a customer by ID
