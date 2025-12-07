@@ -4,7 +4,7 @@ import { ParseIso } from "date-fns";
 import Contact from '../models/Contact';
 import Customer from '../models/customer';
 
-class ContactsController {
+class ContactController {
     // List all customers
         async index(req, res) {
             const {name, email, status, createdBefore, createdAfter, updatedBefore, updatedAfter, sort} = req.query;
@@ -67,6 +67,7 @@ class ContactsController {
                     include: [
                         {
                             model: Customer,
+                            as: 'customer',
                             attributes: ['id', 'status'],
                             required: true,
                         },
@@ -76,7 +77,7 @@ class ContactsController {
                     offset: limit * page - limit,
                 });
                 return res.json(data);
-            } catch (error) {
+            } catch (err) {
                 return res.status(500).json({
                     error: err?.message,
                     original: err?.original,
@@ -88,14 +89,29 @@ class ContactsController {
         //  localhost:3000/customers/1/contacts
         async show(req, res) {
             try {
-                const contact = await Contact.findByPk(req.params.id);
+                /*const contact = await Contact.findByPk(req.params.id, {
+                    include: [
+                        {
+                            model: Customer,
+                            as: 'customer'
+                        }
+                    ],
+                });*/
+
+                const contact = await Contact.findOne({
+                    where: {
+                        customer_id: req.params.customerId,
+                        id: req.params.id,
+                    },
+                    attributes: { exclude: ['customer_id', "customerId"] },
+                });
     
                 if (!contact) {
                     return res.status(404).json({ error: 'Customer not found' });
                 }
     
                 return res.json(contact); // Retorna o cliente criado com status 201
-            } catch (error) {
+            } catch (err) {
                 return res.status(500).json({
                     error: err?.message,
                     original: err?.original,
@@ -179,4 +195,4 @@ class ContactsController {
         }
 }
 
-export default new ContactsController();
+export default new ContactController();
