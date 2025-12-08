@@ -125,25 +125,44 @@ class ContactController {
                 const schema = Yup.object().shape({
                     name: Yup.string().required(),
                     email: Yup.string().email().required(),
-                    status: Yup.string().required(),
-                });
-    
+                    status: Yup.string().uppercase(),
+            });
+
                 await schema.validate(req.body, { abortEarly: false });
-    
-                const customer = await Customer.create({
-                    name: req.body.name,
-                    email: req.body.email,
-                    status: req.body.status,
+
+                // Verifica se já existe contato com esse email
+                const contactExists = await Contact.findOne({
+                    where: { email: req.body.email },
                 });
-    
-                return res.status(201).json(customer);
+
+                if (contactExists) {
+                    return res.status(409).json({
+                        error: 'Já existe um contato com este e-mail.',
+                    });
+                }
+
+                // Cria o contato corretamente
+                const contact = await Contact.create({
+                    customer_id: req.params.customerId,
+                    ...req.body,
+                });
+
+                return res.status(201).json(contact);
             } catch (err) {
+                // Trata erro de unique constraint como fallback
+                if (err.original?.code === '23505') {
+                    return res.status(409).json({
+                        error: 'Já existe um contato com este e-mail.',
+                    });
+                }
+
                 return res.status(500).json({
-                    error: err?.message,
-                    original: err?.original,
+                    error: err.message,
+                    original: err.original,
                 });
             }
         }
+
     
         // Update an existing customer by ID
         async update(req, res) {
