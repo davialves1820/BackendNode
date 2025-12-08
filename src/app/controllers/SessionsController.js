@@ -4,6 +4,7 @@ import authConfig from '../../config/auth';
 
 class SessionsController {
     async create(req, res) {
+        // Faz o login e gera o token do usuário
         const { email, password } = req.body;
 
         const user = await User.findOne({ where: { email } });

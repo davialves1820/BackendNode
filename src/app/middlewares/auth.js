@@ -3,6 +3,7 @@ import { promisify } from 'util';
 import authConfig from '../../config/auth';
 
 export default async (req, res, next) => {
+    // Verifica se o token de autenticação foi fornecido
     const authHeader = req.headers.authorization;
 
     if (!authHeader) {
