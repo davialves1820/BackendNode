@@ -56,7 +56,7 @@ class UserController {
     
             try {
                 const data = await User.findAll({
-                    attributes: { exclude: ['password', 'password_hash'] },
+                    attributes: { exclude: ['password', 'password_hash', 'file_id'] },
                     where,
                     order,
                     limit,
@@ -79,13 +79,13 @@ class UserController {
 
                 const user = await User.findByPk(req.params.id, { exclude: ['password', 'password_hash'] });
 
-                const {id, name, email, createdAt, updatedAt} = user;
+                const {id, name, email, file_id, createdAt, updatedAt} = user;
 
                 if (!user) {
                     return res.status(404).json({ error: 'Customer not found' });
                 }
     
-                return res.json({id, name, email, createdAt, updatedAt}); // Retorna o cliente criado com status 201
+                return res.json({id, name, email, file_id, createdAt, updatedAt}); // Retorna o cliente criado com status 201
             } catch (err) {
                 return res.status(500).json({
                     error: err?.message,
@@ -135,6 +135,7 @@ class UserController {
                 const schema = Yup.object().shape({
                     name: Yup.string(),
                     email: Yup.string().email(),
+                    file_id: Yup.number(),
                     oldPassword: Yup.string().min(8),
                     password: Yup.string().min(8).when('oldPassword', (oldPassword, field) =>
                         oldPassword ? field.required() : field
@@ -145,6 +146,7 @@ class UserController {
             });
 
                 if (!(await schema.isValid(req.body))) {
+                    console.log(req.body);
                     return res.status(400).json({ error: 'Validation fails' });
                 }
 
@@ -161,7 +163,7 @@ class UserController {
                 }
 
                 // Atualiza o user
-                const {id, name, email, createdAt, updatedAt} = await user.update(req.body);
+                const {id, name, email, file_id, createdAt, updatedAt} = await user.update(req.body);
 
                 return res.status(201).json({id, name, email, createdAt, updatedAt});
             } catch (err) {

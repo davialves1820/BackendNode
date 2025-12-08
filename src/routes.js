@@ -3,6 +3,7 @@ import customers from './app/controllers/customersController'
 import contacts from './app/controllers/contactController'
 import users from './app/controllers/userController'
 import sessions from './app/controllers/SessionsController'
+import files from "./app/controllers/FilesController"
 import auth from './app/middlewares/auth'
 import multer from "multer"
 import multerConfig from "./config/multer"
@@ -36,8 +37,6 @@ routes.put("/users/:id", users.update);
 routes.delete("/users/:id", users.delete);
 
 // Files
-routes.post("/file", upload.single("file") , (req, res) => {
-    return res.json({ response: "ok" });
-})
+routes.post("/file", upload.single("file") , files.create);
 
 export default routes;

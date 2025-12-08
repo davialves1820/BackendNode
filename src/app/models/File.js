@@ -1,25 +1,24 @@
 import Sequelize, { Model } from "sequelize";
 
-class Customer extends Model {
+class File extends Model {
     static init(sequelize) {
         super.init({
             name: Sequelize.STRING,
-            email: Sequelize.STRING,
-            status: Sequelize.ENUM("ACTIVE", "ARCHIVED"),
+            path: Sequelize.STRING,
         },
         {
             sequelize,
             name: {
-                singular: "customer",
-                plural: "customers",
+                singular: "file",
+                plural: "files",
             }
         });
         return this;
     }
 
     static associate(models) {
-        this.hasMany(models.Contact);
+        this.hasMany(models.User);
     }
 }
 
-export default Customer;
+export default File;
