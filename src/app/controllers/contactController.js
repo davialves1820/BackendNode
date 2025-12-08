@@ -175,15 +175,21 @@ class ContactController {
     
                 await schema.validate(req.body, { abortEarly: false });
     
-                const customer = await Customer.findByPk(req.params.id);
+                const contact = await Contact.findOne({
+                    where: { 
+                        customer_id: req.params.customerId,
+                        id: req.params.id,
+                    },
+                    attributes: { exclude: ['customer_id', "customerId"] },
+                });
     
-                if (!customer) {
+                if (!contact) {
                     return res.status(404).json({ error: 'Customer not found' });
                 }
     
-                await customer.update(req.body);
+                await contact.update(req.body);
     
-                return res.status(201).json(customer);
+                return res.status(201).json(contact);
             } catch (err) {
                 return res.status(500).json({
                     error: err?.message,
@@ -196,13 +202,19 @@ class ContactController {
         async delete(req, res) {
     
             try {
-                const customer = await Customer.findByPk(req.params.id);
+                const contact = await Contact.findOne({
+                    where: { 
+                        customer_id: req.params.customerId,
+                        id: req.params.id,
+                    },
+                    attributes: { exclude: ['customer_id', "customerId"] },
+                });
     
-                if (!customer) {
+                if (!contact) {
                     return res.status(404).json({ error: 'Customer not found' });
                 }
     
-                await customer.destroy();
+                await contact.destroy();
     
                 return res.status(201).json("customer deleted");
             } catch (err) {
