@@ -2,8 +2,14 @@ import { Router } from 'express'
 import customers from './app/controllers/customersController'
 import contacts from './app/controllers/contactController'
 import users from './app/controllers/userController'
+import sessions from './app/controllers/SessionsController'
+import auth from './app/middlewares/auth'
 
 const routes = new Router();
+
+// Session routes
+routes.post("/sessions", sessions.create);
+routes.use(auth); // Apply authentication middleware to all routes below
 
 // Define routes here
 routes.get("/customers", customers.index);
