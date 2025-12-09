@@ -4,8 +4,52 @@ import { ParseIso } from "date-fns";
 import Contact from '../models/Contact';
 import Customer from '../models/customer';
 
+/**
+ * @swagger
+ * tags:
+ *   name: Contacts
+ *   description: Endpoints de contatos vinculados a clientes
+ */
+
+
 class ContactController {
     // List all customers
+    /**
+     * @swagger
+     * /customers/{customerId}/contacts:
+     *   get:
+     *     summary: Lista contatos de um cliente
+     *     tags: [Contacts]
+     *     parameters:
+     *       - in: path
+     *         name: customerId
+     *         required: true
+     *         schema:
+     *           type: integer
+     *         description: ID do cliente
+     *       - in: query
+     *         name: page
+     *         schema:
+     *           type: integer
+     *       - in: query
+     *         name: limit
+     *         schema:
+     *           type: integer
+     *       - in: query
+     *         name: name
+     *         schema:
+     *           type: string
+     *       - in: query
+     *         name: email
+     *         schema:
+     *           type: string
+     *     responses:
+     *       200:
+     *         description: Lista de contatos
+     *       500:
+     *         description: Erro interno
+     */
+
         async index(req, res) {
             const {name, email, status, createdBefore, createdAfter, updatedBefore, updatedAfter, sort} = req.query;
     
@@ -76,7 +120,7 @@ class ContactController {
                     limit,
                     offset: limit * page - limit,
                 });
-                return res.json(data);
+                return res.status(200).json(data);
             } catch (err) {
                 return res.status(500).json({
                     error: err?.message,
@@ -87,6 +131,30 @@ class ContactController {
     
         // Show a specific customer by ID
         //  localhost:3000/customers/1/contacts
+        /**
+         * @swagger
+         * /customers/{customerId}/contacts/{id}:
+         *   get:
+         *     summary: Obtém um contato pelo ID
+         *     tags: [Contacts]
+         *     parameters:
+         *       - in: path
+         *         name: customerId
+         *         required: true
+         *         schema:
+         *           type: integer
+         *       - in: path
+         *         name: id
+         *         required: true
+         *         schema:
+         *           type: integer
+         *     responses:
+         *       200:
+         *         description: Contato encontrado
+         *       404:
+         *         description: Contato não encontrado
+         */
+
         async show(req, res) {
             try {
                 /*const contact = await Contact.findByPk(req.params.id, {
@@ -110,7 +178,7 @@ class ContactController {
                     return res.status(404).json({ error: 'Customer not found' });
                 }
     
-                return res.json(contact); // Retorna o cliente criado com status 201
+                return res.status(200).json(contact); // Retorna o cliente criado com status 201
             } catch (err) {
                 return res.status(500).json({
                     error: err?.message,
@@ -120,6 +188,38 @@ class ContactController {
         }
     
         // Create a new customer
+        /**
+         * @swagger
+         * /customers/{customerId}/contacts:
+         *   post:
+         *     summary: Cria um novo contato
+         *     tags: [Contacts]
+         *     parameters:
+         *       - in: path
+         *         name: customerId
+         *         required: true
+         *         schema:
+         *           type: integer
+         *     requestBody:
+         *       required: true
+         *       content:
+         *         application/json:
+         *           schema:
+         *             type: object
+         *             properties:
+         *               name:
+         *                 type: string
+         *               email:
+         *                 type: string
+         *               status:
+         *                 type: string
+         *     responses:
+         *       200:
+         *         description: Contato criado
+         *       409:
+         *         description: Email já existente
+         */
+
         async create(req, res) {
             try {
                 const schema = Yup.object().shape({
@@ -147,7 +247,7 @@ class ContactController {
                     ...req.body,
                 });
 
-                return res.status(201).json(contact);
+                return res.status(200).json(contact);
             } catch (err) {
                 // Trata erro de unique constraint como fallback
                 if (err.original?.code === '23505') {
@@ -165,6 +265,31 @@ class ContactController {
 
     
         // Update an existing customer by ID
+        /**
+         * @swagger
+         * /customers/{customerId}/contacts/{id}:
+         *   put:
+         *     summary: Atualiza um contato existente
+         *     tags: [Contacts]
+         *     parameters:
+         *       - in: path
+         *         name: customerId
+         *         required: true
+         *       - in: path
+         *         name: id
+         *         required: true
+         *     requestBody:
+         *       content:
+         *         application/json:
+         *           schema:
+         *             type: object
+         *     responses:
+         *       200:
+         *         description: Contato atualizado
+         *       404:
+         *         description: Contato não encontrado
+         */
+
         async update(req, res) {
             try {
                 const schema = Yup.object().shape({
@@ -189,7 +314,7 @@ class ContactController {
     
                 await contact.update(req.body);
     
-                return res.status(201).json(contact);
+                return res.status(200).json(contact);
             } catch (err) {
                 return res.status(500).json({
                     error: err?.message,
@@ -199,6 +324,26 @@ class ContactController {
         }  
     
         // Delete a customer by ID
+        /**
+         * @swagger
+         * /customers/{customerId}/contacts/{id}:
+         *   delete:
+         *     summary: Remove um contato
+         *     tags: [Contacts]
+         *     parameters:
+         *       - in: path
+         *         name: customerId
+         *         required: true
+         *       - in: path
+         *         name: id
+         *         required: true
+         *     responses:
+         *       200:
+         *         description: Contato deletado
+         *       404:
+         *         description: Contato não encontrado
+         */
+
         async delete(req, res) {
     
             try {
@@ -216,7 +361,7 @@ class ContactController {
     
                 await contact.destroy();
     
-                return res.status(201).json("customer deleted");
+                return res.status(200).json("customer deleted");
             } catch (err) {
                 return res.status(500).json({
                     error: err?.message,

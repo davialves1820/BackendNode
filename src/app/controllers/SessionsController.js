@@ -2,7 +2,38 @@ import User from "../models/User";
 import jwt from 'jsonwebtoken';
 import authConfig from '../../config/auth';
 
+/**
+ * @swagger
+ * tags:
+ *   name: Authentication
+ *   description: Login e geração de token
+ */
+
 class SessionsController {
+
+    /**
+     * @swagger
+     * /sessions:
+     *   post:
+     *     summary: Login do usuário
+     *     tags: [Authentication]
+     *     requestBody:
+     *       required: true
+     *       content:
+     *         application/json:
+     *           schema:
+     *             type: object
+     *             properties:
+     *               email:
+     *                 type: string
+     *               password:
+     *                 type: string
+     *     responses:
+     *       200:
+     *         description: Login bem-sucedido
+     *       401:
+     *         description: Credenciais inválidas
+     */
     async create(req, res) {
         // Faz o login e gera o token do usuário
         const { email, password } = req.body;

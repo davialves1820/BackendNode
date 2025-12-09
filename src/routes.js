@@ -1,7 +1,7 @@
 import { Router } from 'express'
-import customers from './app/controllers/customersController'
-import contacts from './app/controllers/contactController'
-import users from './app/controllers/userController'
+import customers from './app/controllers/CustomersController'
+import contacts from './app/controllers/ContactController'
+import users from './app/controllers/UserController'
 import sessions from './app/controllers/SessionsController'
 import files from "./app/controllers/FilesController"
 import auth from './app/middlewares/auth'

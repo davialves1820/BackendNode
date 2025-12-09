@@ -6,6 +6,13 @@ import Mail from "../../lib/Mail";
 
 class UserController {
     // List all customers
+    /**
+     * @swagger
+     * tags:
+     *   name: Users
+     *   description: CRUD de usuários
+     */
+
         async index(req, res) {
             const {name, email, createdBefore, createdAfter, updatedBefore, updatedAfter, sort} = req.query;
     
@@ -64,7 +71,7 @@ class UserController {
                     offset: limit * page - limit,
                 });
 
-                return res.json(data);
+                return res.status(200).json(data);
             } catch (err) {
                 return res.status(500).json({
                     error: err?.message,
@@ -75,6 +82,14 @@ class UserController {
     
         // Show a specific customer by ID
         //  localhost:3000/customers/1/contacts
+        /**
+        * @swagger
+        * /users/{id}:
+        *   get:
+        *     summary: Mostra um usuário
+        *     tags: [Users]
+        */
+
         async show(req, res) {
             try {
 
@@ -86,7 +101,7 @@ class UserController {
                     return res.status(404).json({ error: 'Customer not found' });
                 }
     
-                return res.json({id, name, email, file_id, createdAt, updatedAt}); // Retorna o cliente criado com status 201
+                return res.status(200).json({id, name, email, file_id, createdAt, updatedAt}); // Retorna o cliente criado com status 201
             } catch (err) {
                 return res.status(500).json({
                     error: err?.message,
@@ -96,6 +111,14 @@ class UserController {
         }
     
         // Create a new customer
+        /**
+         * @swagger
+         * /users:
+         *   post:
+         *     summary: Cria um usuário
+         *     tags: [Users]
+         */
+
         async create(req, res) {
             try {
                 const schema = Yup.object().shape({
@@ -120,7 +143,7 @@ class UserController {
                     text: `Olá ${name}, bem vindo ao nosso sistema.`,
                 })
 
-                return res.status(201).json({id, name, email, createdAt, updatedAt});
+                return res.status(200).json({id, name, email, createdAt, updatedAt});
             } catch (err) {
                 // Trata erro de unique constraint como fallback
                 if (err.original?.code === '23505') {
@@ -137,6 +160,14 @@ class UserController {
         }
     
         // Update an existing customer by ID
+        /**
+         * @swagger
+         * /users/{id}:
+         *   put:
+         *     summary: Atualiza um usuário
+         *     tags: [Users]
+         */
+
         async update(req, res) {
             try {
                 const schema = Yup.object().shape({
@@ -172,7 +203,7 @@ class UserController {
                 // Atualiza o user
                 const {id, name, email, file_id, createdAt, updatedAt} = await user.update(req.body);
 
-                return res.status(201).json({id, name, email, createdAt, updatedAt});
+                return res.status(200).json({id, name, email, createdAt, updatedAt});
             } catch (err) {
                 // Trata erro de unique constraint como fallback
                 if (err.original?.code === '23505') {
@@ -189,6 +220,14 @@ class UserController {
         }  
     
         // Delete a customer by ID
+        /**
+         * @swagger
+         * /users/{id}:
+         *   delete:
+         *     summary: Remove usuário
+         *     tags: [Users]
+         */
+
         async delete(req, res) {
             try {
             const user = await User.findByPk(req.params.id);
@@ -199,7 +238,7 @@ class UserController {
 
             await user.destroy();
 
-            return res.status(204).send();
+            return res.status(200).send();
         } catch (err) {
             return res.status(500).json({
                 error: err?.message,

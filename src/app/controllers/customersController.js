@@ -4,9 +4,28 @@ import { ParseIso } from "date-fns";
 import Customer from '../models/customer.js';
 import Contact from '../models/Contact.js';
 
-class customersController {
+/**
+ * @swagger
+ * tags:
+ *   name: Customers
+ *   description: Endpoints de clientes
+ */
+
+
+class CustomersController {
 
     // List all customers
+    /**
+     * @swagger
+     * /customers:
+     *   get:
+     *     summary: Lista clientes
+     *     tags: [Customers]
+     *     responses:
+     *       200:
+     *         description: Lista de clientes
+     */
+
     async index(req, res) {
         const {name, email, status, createdBefore, createdAfter, updatedBefore, updatedAfter, sort} = req.query;
 
@@ -75,7 +94,7 @@ class customersController {
                 limit,
                 offset: limit * page - limit,
             });
-            return res.json(data);
+            return res.status(200).json(data);
         } catch (error) {
             return res.status(500).json({
                 error: err?.message,
@@ -85,6 +104,23 @@ class customersController {
     }
 
     // Show a specific customer by ID
+    /**
+     * @swagger
+     * /customers/{id}:
+     *   get:
+     *     summary: Obtém um cliente pelo ID
+     *     tags: [Customers]
+     *     parameters:
+     *       - in: path
+     *         name: id
+     *         required: true
+     *     responses:
+     *       200:
+     *         description: Cliente encontrado
+     *       404:
+     *         description: Cliente não encontrado
+     */
+
     async show(req, res) {
         try {
             const customer = await Customer.findByPk(req.params.id);
@@ -93,7 +129,7 @@ class customersController {
                 return res.status(404).json({ error: 'Customer not found' });
             }
 
-            return res.json(customer); // Retorna o cliente criado com status 201
+            return res.status(200).json(customer); // Retorna o cliente criado com status 201
         } catch (error) {
             return res.status(500).json({
                 error: err?.message,
@@ -103,6 +139,17 @@ class customersController {
     }
 
     // Create a new customer
+    /**
+     * @swagger
+     * /customers:
+     *   post:
+     *     summary: Cria um novo cliente
+     *     tags: [Customers]
+     *     responses:
+     *       200:
+     *         description: Cliente criado
+     */
+
     async create(req, res) {
         try {
             const schema = Yup.object().shape({
@@ -119,7 +166,7 @@ class customersController {
                 status: req.body.status,
             });
 
-            return res.status(201).json(customer);
+            return res.status(200).json(customer);
         } catch (err) {
             return res.status(500).json({
                 error: err?.message,
@@ -129,6 +176,20 @@ class customersController {
     }
 
     // Update an existing customer by ID
+    /**
+     * @swagger
+     * /customers/{id}:
+     *   put:
+     *     summary: Atualiza um cliente
+     *     tags: [Customers]
+     *     parameters:
+     *       - in: path
+     *         name: id
+     *     responses:
+     *       200:
+     *         description: Cliente atualizado
+     */
+
     async update(req, res) {
         try {
             const schema = Yup.object().shape({
@@ -147,7 +208,7 @@ class customersController {
 
             await customer.update(req.body);
 
-            return res.status(201).json(customer);
+            return res.status(200).json(customer);
         } catch (err) {
             return res.status(500).json({
                 error: err?.message,
@@ -157,6 +218,14 @@ class customersController {
     }  
 
     // Delete a customer by ID
+    /**
+     * @swagger
+     * /customers/{id}:
+     *   delete:
+     *     summary: Remove um cliente
+     *     tags: [Customers]
+     */
+
     async delete(req, res) {
 
         try {
@@ -168,7 +237,7 @@ class customersController {
 
             await customer.destroy();
 
-            return res.status(201).json("customer deleted");
+            return res.status(200).json("customer deleted");
         } catch (err) {
             return res.status(500).json({
                 error: err?.message,
@@ -178,4 +247,4 @@ class customersController {
     }
 }
 
-export default new customersController();
+export default new CustomersController();
