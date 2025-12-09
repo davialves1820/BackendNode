@@ -47,13 +47,13 @@ class customersController {
         }
 
         if (updatedBefore) {
-            where = { ...where, createdAt: {
+            where = { ...where, updateAt: {
                 [Op.gte]: ParseIso(updatedBefore),
             } };
         }
 
         if (updatedAfter) {
-            where = { ...where, createdAt: {
+            where = { ...where, updateAt: {
                 [Op.gte]: ParseIso(updatedAfter),
             } };
         }
