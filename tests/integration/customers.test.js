@@ -2,7 +2,6 @@ import request from "supertest";
 import app from "../../src/app";
 import User from "../../src/app/models/User";
 import jwt from "jsonwebtoken";
-import authConfig from "../../src/config/auth";
 
 describe("Customers Integration", () => {
 
@@ -15,8 +14,8 @@ describe("Customers Integration", () => {
             password: "12345678"
         });
 
-        token = jwt.sign({ id: user.id }, authConfig.secret, {
-        expiresIn: authConfig.expiresIn,
+        token = jwt.sign({ id: user.id }, process.env.SECRET, {
+        expiresIn: process.env.EXPIRESIN,
         });
     });
 
