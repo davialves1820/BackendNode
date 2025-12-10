@@ -1,12 +1,46 @@
+import 'dotenv/config';
+
 module.exports = {
-    dialect: "postgres",
-    host: "localhost",
-    username: "postgres",
-    password: "davi.2005",
-    database: "learnNode",
-    define: {
-        timestamps: true, // Adiciona os campos createdAt e updatedAt automaticamente
-        underscored: true, // Usa snake_case em vez de camelCase para os nomes dos campos
-        underscoredAll: true, // Usa snake_case em vez de camelCase para todos os nomes
+    development: {
+        dialect: "postgres",
+        host: "localhost",
+        port: 5432,
+        username: String(process.env.DB_USER),
+        password: String(process.env.DB_PASS),
+        database: String(process.env.DB_NAME_DEVELOPMENT),
+        define: {
+            timestamps: true,
+            underscored: true,
+            underscoredAll: true,
+        },
     },
+
+    test: {
+        dialect: "postgres",
+        host: "localhost",
+        port: 5432,
+        username: process.env.DB_USER,
+        password: process.env.DB_PASS,
+        database: process.env.DB_NAME,
+        logging: false,
+        define: {
+            timestamps: true,
+            underscored: true,
+            underscoredAll: true,
+        },
+    },
+
+    production: {
+        dialect: "postgres",
+        host: process.env.DB_HOST,
+        port: process.env.DB_PORT || 5432,
+        username: process.env.DB_USER,
+        password: process.env.DB_PASS,
+        database: process.env.DB_NAME,
+        define: {
+            timestamps: true,
+            underscored: true,
+            underscoredAll: true,
+        },
+    }
 };
