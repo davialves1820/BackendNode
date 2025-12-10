@@ -148,9 +148,9 @@ class UserController {
                 return res.status(404).json({ error: 'Customer not found' });
             }
 
-            const {id, name, email, file_id, createdAt, updatedAt} = user;
+            const {id, name, email, role, file_id, createdAt, updatedAt} = user;
     
-            return res.status(200).json({id, name, email, file_id, createdAt, updatedAt});
+            return res.status(200).json({id, name, email, role, file_id, createdAt, updatedAt});
         } catch (err) {
             return res.status(500).json({
                 error: err?.message,
@@ -194,6 +194,7 @@ class UserController {
             const schema = Yup.object().shape({
                 name: Yup.string().required(),
                 email: Yup.string().email().required(),
+                role: Yup.string().required(),
                 password: Yup.string().required().min(8),
                 passwordConfirmation: Yup.string().when('password', (password, field) =>
                     password ? field.required().oneOf([Yup.ref('password')]) : field
@@ -204,7 +205,7 @@ class UserController {
                 return res.status(400).json({ error: 'Validation fails' });
             }
 
-            const {id, name, email, createdAt, updatedAt} = await User.create(req.body);
+            const {id, name, email, role, createdAt, updatedAt} = await User.create(req.body);
 
             Mail.send({
                 to: email,
@@ -212,7 +213,7 @@ class UserController {
                 text: `Olá ${name}, bem vindo ao nosso sistema.`,
             });
 
-            return res.status(200).json({id, name, email, createdAt, updatedAt});
+            return res.status(200).json({id, name, email, role, createdAt, updatedAt});
         } catch (err) {
             if (err.original?.code === '23505') {
                 return res.status(409).json({ error: 'Esse usuário já existe.' });
@@ -257,6 +258,7 @@ class UserController {
             const schema = Yup.object().shape({
                 name: Yup.string(),
                 email: Yup.string().email(),
+                role: Yup.string(),
                 file_id: Yup.number(),
                 oldPassword: Yup.string().min(8),
                 password: Yup.string().min(8).when('oldPassword', (oldPassword, field) =>
@@ -281,9 +283,9 @@ class UserController {
                 return res.status(401).json({ error: 'Password does not match' });
             }
 
-            const {id, name, email, file_id, createdAt, updatedAt} = await user.update(req.body);
+            const {id, name, email, role, file_id, createdAt, updatedAt} = await user.update(req.body);
 
-            return res.status(200).json({id, name, email, createdAt, updatedAt});
+            return res.status(200).json({id, name, email, role, file_id, createdAt, updatedAt});
         } catch (err) {
             if (err.original?.code === '23505') {
                 return res.status(409).json({ error: 'Esse usuário já existe.' });

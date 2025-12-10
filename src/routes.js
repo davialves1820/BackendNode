@@ -1,42 +1,48 @@
-import { Router } from 'express'
-import customers from './app/controllers/CustomersController'
-import contacts from './app/controllers/ContactController'
-import users from './app/controllers/UserController'
-import sessions from './app/controllers/SessionsController'
-import files from "./app/controllers/FilesController"
-import auth from './app/middlewares/auth'
-import multer from "multer"
-import multerConfig from "./config/multer"
+import { Router } from 'express';
+import multer from "multer";
+import multerConfig from "./config/multer.js";
+
+import auth from './app/middlewares/auth.js';
+import role from './app/middlewares/role.js';
+import { ROLES } from './app/constants/roles.js';
+
+import CustomersController from './app/controllers/CustomersController.js';
+import ContactController from './app/controllers/ContactController.js';
+import UsersController from './app/controllers/UserController.js';
+import SessionsController from './app/controllers/SessionsController.js';
+import FilesController from "./app/controllers/FilesController.js";
 
 const routes = new Router();
 const upload = multer(multerConfig);
 
-// Session routes
-routes.post("/sessions", sessions.create);
-routes.use(auth); // Apply authentication middleware to all routes below
+// Public routes
+routes.post("/sessions", SessionsController.create);
 
-// Define routes here
-routes.get("/customers", customers.index);
-routes.get("/customers/:id", customers.show);
-routes.post("/customers", customers.create);
-routes.put("/customers/:id", customers.update);
-routes.delete("/customers/:id", customers.delete);
+// Apply authentication to all routes below
+routes.use(auth);
 
-// Define contacts routes here
-routes.get("/customers/:customerId/contacts", contacts.index);
-routes.get("/customers/:customerId/contacts/:id", contacts.show);
-routes.post("/customers/:customerId/contacts", contacts.create);
-routes.put("/customers/:customerId/contacts/:id", contacts.update);
-routes.delete("/customers/:customerId/contacts/:id", contacts.delete);
+// Customers routes
+routes.get("/customers", CustomersController.index);
+routes.get("/customers/:id", CustomersController.show);
+routes.post("/customers", role([ROLES.ADMIN, ROLES.MANAGER]), CustomersController.create);
+routes.put("/customers/:id", role([ROLES.ADMIN, ROLES.MANAGER]), CustomersController.update);
+routes.delete("/customers/:id", role([ROLES.ADMIN]), CustomersController.delete);
 
-// Define routes here
-routes.get("/users", users.index);
-routes.get("/users/:id", users.show);
-routes.post("/users", users.create);
-routes.put("/users/:id", users.update);
-routes.delete("/users/:id", users.delete);
+// Contacts routes
+routes.get("/customers/:customerId/contacts", ContactController.index);
+routes.get("/customers/:customerId/contacts/:id", ContactController.show);
+routes.post("/customers/:customerId/contacts", role([ROLES.ADMIN, ROLES.MANAGER]), ContactController.create);
+routes.put("/customers/:customerId/contacts/:id", role([ROLES.ADMIN, ROLES.MANAGER]), ContactController.update);
+routes.delete("/customers/:customerId/contacts/:id", role([ROLES.ADMIN, ROLES.MANAGER]), ContactController.delete);
 
-// Files
-routes.post("/file", upload.single("file") , files.create);
+// Users routes
+routes.get("/users", role([ROLES.ADMIN]), UsersController.index);
+routes.get("/users/:id", role([ROLES.ADMIN]), UsersController.show);
+routes.post("/users", UsersController.create);
+routes.put("/users/:id", role([ROLES.ADMIN]), UsersController.update);
+routes.delete("/users/:id", role([ROLES.ADMIN]), UsersController.delete);
+
+// File upload
+routes.post("/file", upload.single("file"), role([ROLES.ADMIN, ROLES.MANAGER]), FilesController.create);
 
 export default routes;
