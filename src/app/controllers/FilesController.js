@@ -27,13 +27,22 @@ class FilesController {
      *     responses:
      *       200:
      *         description: Upload bem-sucedido
+     *       500:
+     *         description: Error ao fazer o upload
      */
     async create(req, res) {
-        const { originalname: name, filename: path } = req.file;
+        try {
+            const { originalname: name, filename: path } = req.file;
 
-        const file = await File.create({ name, path });
+            const file = await File.create({ name, path }); 
 
-        res.status(200).json(file);
+            res.status(200).json(file);
+        } catch(error) {
+            return res.status(500).json({
+                error: err?.message,
+                original: err?.original,
+            });
+        }
     }
 }
 
