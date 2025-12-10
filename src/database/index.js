@@ -10,7 +10,10 @@ const models = [User, Customer, Contact, File];
 
 class Database {
     constructor() {
-        this.connection = new Sequelize(config);
+        const env = process.env.NODE_ENV || "development";
+        const configEnv = config[env];
+
+        this.connection = new Sequelize(configEnv);
         this.init();
         this.associate();
     }

@@ -2,6 +2,7 @@ import express from 'express'
 import routes from './routes'
 import swaggerUi from "swagger-ui-express";
 import { swaggerSpec } from "./config/swagger";
+require('dotenv').config();
 
 //import authMiddleware from './app/middlewares/auth'
 import './database' // Garante que a conexão com o banco de dados seja estabelecida

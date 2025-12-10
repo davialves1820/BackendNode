@@ -27,7 +27,9 @@ class CustomersController {
      */
 
     async index(req, res) {
-        const {name, email, status, createdBefore, createdAfter, updatedBefore, updatedAfter, sort} = req.query;
+        const query = req.query || {};
+
+        const {name, email, status, createdBefore, createdAfter, updatedBefore, updatedAfter, sort} = query;
 
         const page = req.query.page ? parseInt(req.query.page) : 1;
         const limit = req.query.limit ? parseInt(req.query.limit) : 25;
