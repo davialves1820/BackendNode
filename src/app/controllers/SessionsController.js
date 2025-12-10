@@ -1,6 +1,5 @@
 import User from "../models/User";
 import jwt from 'jsonwebtoken';
-import authConfig from '../../config/auth';
 
 /**
  * @swagger
@@ -56,8 +55,8 @@ class SessionsController {
                 name,
                 email,
             },
-            token: jwt.sign({ id }, authConfig.secret, {
-                expiresIn: authConfig.expiresIn,
+            token: jwt.sign({ id }, process.env.SECRET, {
+                expiresIn: process.env.EXPIRESIN,
             }),
         });
     }
