@@ -2,9 +2,9 @@ import * as Yup from 'yup';
 import { Op } from 'sequelize';
 import { parseISO } from "date-fns";
 import User from '../models/User.js';
-import Mail from "../../lib/Mail.js";
 import Queue from "../../lib/Queue.js";
 import DummyJob from "../jobs/DummyJob.js";
+import WelcomeEmailJob from "../jobs/WelcomeEmailJob.js";
 
 class UserController {
 
@@ -209,13 +209,8 @@ class UserController {
 
             const { id, name, email, role, createdAt, updatedAt } = await User.create(req.body);
 
-            Mail.send({
-                to: email,
-                subject: "Bem-vindo(a)",
-                text: `Olá ${name}, bem vindo ao nosso sistema.`,
-            });
-
             await Queue.add(DummyJob.key, { message: "HELLO JOBS" });
+            await Queue.add(WelcomeEmailJob.key, { name, email });
 
             return res.status(200).json({ id, name, email, role, createdAt, updatedAt });
         } catch (err) {
