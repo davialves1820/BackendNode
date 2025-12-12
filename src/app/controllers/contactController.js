@@ -1,8 +1,8 @@
 import * as Yup from 'yup';
 import { Op } from 'sequelize';
-import { ParseIso } from "date-fns";
-import Contact from '../models/Contact';
-import Customer from '../models/customer';
+import { parseISO } from "date-fns";
+import Contact from '../models/Contact.js';
+import Customer from '../models/customer.js';
 
 /**
  * @swagger
@@ -53,12 +53,12 @@ class ContactController {
      *         description: Erro interno
      */
     async index(req, res) {
-        const {name, email, status, createdBefore, createdAfter, updatedBefore, updatedAfter, sort} = req.query;
+        const { name, email, status, createdBefore, createdAfter, updatedBefore, updatedAfter, sort } = req.query;
 
         const page = req.query.page ? parseInt(req.query.page) : 1;
         const limit = req.query.limit ? parseInt(req.query.limit) : 25;
-        
-        let where = {customer_id: req.params.customerId};
+
+        let where = { customer_id: req.params.customerId };
         let order = [];
 
         if (name) {
@@ -74,19 +74,19 @@ class ContactController {
         }
 
         if (createdBefore) {
-            where = { ...where, createdAt: { [Op.gte]: ParseIso(createdBefore) } };
+            where = { ...where, createdAt: { [Op.gte]: parseISO(createdBefore) } };
         }
 
         if (createdAfter) {
-            where = { ...where, createdAt: { [Op.gte]: ParseIso(createdAfter) } };
+            where = { ...where, createdAt: { [Op.gte]: parseISO(createdAfter) } };
         }
 
         if (updatedBefore) {
-            where = { ...where, updateAt: { [Op.gte]: ParseIso(updatedBefore) } };
+            where = { ...where, updateAt: { [Op.gte]: parseISO(updatedBefore) } };
         }
 
         if (updatedAfter) {
-            where = { ...where, updateAt: { [Op.gte]: ParseIso(updatedAfter) } };
+            where = { ...where, updateAt: { [Op.gte]: parseISO(updatedAfter) } };
         }
 
         if (sort) {
@@ -256,7 +256,7 @@ class ContactController {
             await schema.validate(req.body, { abortEarly: false });
 
             const contact = await Contact.findOne({
-                where: { 
+                where: {
                     customer_id: req.params.customerId,
                     id: req.params.id,
                 },
@@ -301,7 +301,7 @@ class ContactController {
     async delete(req, res) {
         try {
             const contact = await Contact.findOne({
-                where: { 
+                where: {
                     customer_id: req.params.customerId,
                     id: req.params.id,
                 },

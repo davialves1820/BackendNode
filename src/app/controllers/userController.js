@@ -1,8 +1,10 @@
 import * as Yup from 'yup';
 import { Op } from 'sequelize';
-import { ParseIso } from "date-fns";
-import User from '../models/User';
-import Mail from "../../lib/Mail";
+import { parseISO } from "date-fns";
+import User from '../models/User.js';
+import Mail from "../../lib/Mail.js";
+import Queue from "../../lib/Queue.js";
+import DummyJob from "../jobs/DummyJob.js";
 
 class UserController {
 
@@ -68,42 +70,42 @@ class UserController {
      *         description: Erro interno
      */
     async index(req, res) {
-        const {name, email, createdBefore, createdAfter, updatedBefore, updatedAfter, sort} = req.query;
-    
+        const { name, email, createdBefore, createdAfter, updatedBefore, updatedAfter, sort } = req.query;
+
         const page = req.query.page ? parseInt(req.query.page) : 1;
         const limit = req.query.limit ? parseInt(req.query.limit) : 25;
-        
+
         let where = {};
         let order = [];
-    
+
         if (name) {
-            where = { ...where, name: { [Op.iLike]: name }};
+            where = { ...where, name: { [Op.iLike]: name } };
         }
-    
+
         if (email) {
-            where = { ...where, email: { [Op.iLike]: email }};
+            where = { ...where, email: { [Op.iLike]: email } };
         }
-    
+
         if (createdBefore) {
-            where = { ...where, createdAt: { [Op.lte]: ParseIso(createdBefore) }};
+            where = { ...where, createdAt: { [Op.lte]: parseISO(createdBefore) } };
         }
-    
+
         if (createdAfter) {
-            where = { ...where, createdAt: { [Op.gte]: ParseIso(createdAfter) }};
+            where = { ...where, createdAt: { [Op.gte]: parseISO(createdAfter) } };
         }
-    
+
         if (updatedBefore) {
-            where = { ...where, updateAt: { [Op.gte]: ParseIso(updatedBefore) }};
+            where = { ...where, updateAt: { [Op.gte]: parseISO(updatedBefore) } };
         }
-    
+
         if (updatedAfter) {
-            where = { ...where, updateAt: { [Op.gte]: ParseIso(updatedAfter) }};
+            where = { ...where, updateAt: { [Op.gte]: parseISO(updatedAfter) } };
         }
-    
+
         if (sort) {
             order = sort.split(',').map(item => item.split(':'));
         }
-    
+
         try {
             const data = await User.findAll({
                 attributes: { exclude: ['password', 'password_hash', 'file_id'] },
@@ -148,9 +150,9 @@ class UserController {
                 return res.status(404).json({ error: 'Customer not found' });
             }
 
-            const {id, name, email, role, file_id, createdAt, updatedAt} = user;
-    
-            return res.status(200).json({id, name, email, role, file_id, createdAt, updatedAt});
+            const { id, name, email, role, file_id, createdAt, updatedAt } = user;
+
+            return res.status(200).json({ id, name, email, role, file_id, createdAt, updatedAt });
         } catch (err) {
             return res.status(500).json({
                 error: err?.message,
@@ -205,7 +207,7 @@ class UserController {
                 return res.status(400).json({ error: 'Validation fails' });
             }
 
-            const {id, name, email, role, createdAt, updatedAt} = await User.create(req.body);
+            const { id, name, email, role, createdAt, updatedAt } = await User.create(req.body);
 
             Mail.send({
                 to: email,
@@ -213,7 +215,9 @@ class UserController {
                 text: `Olá ${name}, bem vindo ao nosso sistema.`,
             });
 
-            return res.status(200).json({id, name, email, role, createdAt, updatedAt});
+            await Queue.add(DummyJob.key, { message: "HELLO JOBS" });
+
+            return res.status(200).json({ id, name, email, role, createdAt, updatedAt });
         } catch (err) {
             if (err.original?.code === '23505') {
                 return res.status(409).json({ error: 'Esse usuário já existe.' });
@@ -283,9 +287,9 @@ class UserController {
                 return res.status(401).json({ error: 'Password does not match' });
             }
 
-            const {id, name, email, role, file_id, createdAt, updatedAt} = await user.update(req.body);
+            const { id, name, email, role, file_id, createdAt, updatedAt } = await user.update(req.body);
 
-            return res.status(200).json({id, name, email, role, file_id, createdAt, updatedAt});
+            return res.status(200).json({ id, name, email, role, file_id, createdAt, updatedAt });
         } catch (err) {
             if (err.original?.code === '23505') {
                 return res.status(409).json({ error: 'Esse usuário já existe.' });

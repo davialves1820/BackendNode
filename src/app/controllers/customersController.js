@@ -1,6 +1,6 @@
 import * as Yup from 'yup';
 import { Op } from 'sequelize';
-import { ParseIso } from "date-fns";
+import { parseISO } from "date-fns";
 import Customer from '../models/customer.js';
 import Contact from '../models/Contact.js';
 
@@ -29,54 +29,68 @@ class CustomersController {
     async index(req, res) {
         const query = req.query || {};
 
-        const {name, email, status, createdBefore, createdAfter, updatedBefore, updatedAfter, sort} = query;
+        const { name, email, status, createdBefore, createdAfter, updatedBefore, updatedAfter, sort } = query;
 
         const page = req.query.page ? parseInt(req.query.page) : 1;
         const limit = req.query.limit ? parseInt(req.query.limit) : 25;
-        
+
         let where = {};
         let order = [];
 
         if (name) {
-            where = { ...where, name: {
-                [Op.iLike]: name,
-            } };
+            where = {
+                ...where, name: {
+                    [Op.iLike]: name,
+                }
+            };
         }
 
         if (email) {
-            where = { ...where, email: {
-                [Op.iLike]: email,
-            } };
+            where = {
+                ...where, email: {
+                    [Op.iLike]: email,
+                }
+            };
         }
 
         if (status) {
-            where = { ...where, status: {
-                [Op.in]: status.split(',').map(item => item.toUpperCase()),
-            } };
+            where = {
+                ...where, status: {
+                    [Op.in]: status.split(',').map(item => item.toUpperCase()),
+                }
+            };
         }
 
         if (createdBefore) {
-            where = { ...where, createdAt: {
-                [Op.gte]: ParseIso(createdBefore),
-            } };
+            where = {
+                ...where, createdAt: {
+                    [Op.gte]: parseISO(createdBefore),
+                }
+            };
         }
 
         if (createdAfter) {
-            where = { ...where, createdAt: {
-                [Op.gte]: ParseIso(createdAfter),
-            } };
+            where = {
+                ...where, createdAt: {
+                    [Op.gte]: ParseIso(createdAfter),
+                }
+            };
         }
 
         if (updatedBefore) {
-            where = { ...where, updateAt: {
-                [Op.gte]: ParseIso(updatedBefore),
-            } };
+            where = {
+                ...where, updateAt: {
+                    [Op.gte]: ParseIso(updatedBefore),
+                }
+            };
         }
 
         if (updatedAfter) {
-            where = { ...where, updateAt: {
-                [Op.gte]: ParseIso(updatedAfter),
-            } };
+            where = {
+                ...where, updateAt: {
+                    [Op.gte]: ParseIso(updatedAfter),
+                }
+            };
         }
 
         if (sort) {
@@ -217,7 +231,7 @@ class CustomersController {
                 original: err?.original,
             });
         }
-    }  
+    }
 
     // Delete a customer by ID
     /**
