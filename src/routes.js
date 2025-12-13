@@ -19,6 +19,14 @@ const upload = multer(multerConfig);
 
 // Public routes
 routes.post("/sessions", SessionsController.create);
+routes.get("/health", (req, res) => {
+    return res.json({
+        status: "ok",
+        uptime: process.uptime(),
+        timestamp: new Date(),
+    });
+});
+
 
 // Apply authentication to all routes below
 routes.use(auth);
