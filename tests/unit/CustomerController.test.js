@@ -1,16 +1,16 @@
 import CustomerController from "../../src/app/controllers/CustomersController";
-import Customer from "../../src/app/models/customer";
+import Customer from "../../src/app/models/Customer";
 
-jest.mock("../../src/app/models/customer");
+jest.mock("../../src/app/models/Customer");
 
 describe("CustomerController Unit", () => {
     it("index deve retornar lista de clientes", async () => {
         Customer.findAll.mockResolvedValue([{ id: 1, name: "Teste" }]);
 
         const req = { query: {} };
-        const res = { 
+        const res = {
             status: jest.fn().mockReturnThis(),
-            json: jest.fn(), 
+            json: jest.fn(),
         };
 
         await CustomerController.index(req, res);

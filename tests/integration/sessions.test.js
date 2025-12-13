@@ -1,26 +1,33 @@
 import request from "supertest";
-import app from "../../src/app";
-import User from "../../src/app/models/User";
+import app from "../../src/app.js";
+import User from "../../src/app/models/User.js";
+import database from "../../src/database/index.js";
 
 describe("Sessions", () => {
-    it("deve autenticar um usuário", async () => {
+    beforeEach(async () => {
+        await User.destroy({ where: {} });
+    });
 
-        // cria usuário no banco de testes
+    afterAll(async () => {
+        await database.connection.close();
+    });
+
+    it("deve autenticar um usuário", async () => {
         await User.create({
             name: "Davi",
-            email: "davialvesr18@gmail.com",
-            password: "12345678"
+            email: "davi@r18.com",
+            password: "12345678",
+            role: "ADMIN",
         });
 
         const response = await request(app)
-        .post("/sessions")
-        .send({
-            email: "davialvesr18@gmail.com",
-            password: "12345678",
-        });
+            .post("/sessions")
+            .send({
+                email: "davi@r18.com",
+                password: "12345678",
+            });
 
         expect(response.status).toBe(200);
         expect(response.body).toHaveProperty("token");
     });
-
 });

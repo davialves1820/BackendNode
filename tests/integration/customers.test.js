@@ -2,27 +2,36 @@ import request from "supertest";
 import app from "../../src/app";
 import User from "../../src/app/models/User";
 import jwt from "jsonwebtoken";
+import { ROLES } from "../../src/app/constants/roles.js";
 
 describe("Customers Integration", () => {
-
     let token;
 
     beforeAll(async () => {
         const user = await User.create({
             name: "Tester",
             email: "tester@example.com",
-            password: "12345678"
+            password: "12345678",
+            role: ROLES.ADMIN,
         });
 
-        token = jwt.sign({ id: user.id }, process.env.SECRET, {
-        expiresIn: process.env.EXPIRESIN,
-        });
+        // 🔑 TOKEN AGORA TEM ROLE
+        token = jwt.sign(
+            {
+                id: user.id,
+                role: user.role,
+            },
+            process.env.SECRET,
+            {
+                expiresIn: process.env.EXPIRESIN,
+            }
+        );
     });
 
     it("deve listar clientes", async () => {
         const response = await request(app)
-        .get("/customers")
-        .set("Authorization", `Bearer ${token}`);
+            .get("/customers")
+            .set("Authorization", `Bearer ${token}`);
 
         expect(response.status).toBe(200);
         expect(Array.isArray(response.body)).toBe(true);
@@ -30,16 +39,15 @@ describe("Customers Integration", () => {
 
     it("deve criar um cliente", async () => {
         const response = await request(app)
-        .post("/customers")
-        .set("Authorization", `Bearer ${token}`)
-        .send({
-            name: "Cliente Teste",
-            email: "teste@cliente.com",
-            status: "ACTIVE",
-        });
+            .post("/customers")
+            .set("Authorization", `Bearer ${token}`)
+            .send({
+                name: "Cliente Teste",
+                email: "cliente@teste.com",
+                status: "ACTIVE",
+            });
 
         expect(response.status).toBe(200);
         expect(response.body).toHaveProperty("id");
     });
-
 });
