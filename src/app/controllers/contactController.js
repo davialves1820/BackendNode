@@ -82,11 +82,11 @@ class ContactController {
         }
 
         if (updatedBefore) {
-            where = { ...where, updateAt: { [Op.gte]: parseISO(updatedBefore) } };
+            where = { ...where, updatedAt: { [Op.gte]: parseISO(updatedBefore) } };
         }
 
         if (updatedAfter) {
-            where = { ...where, updateAt: { [Op.gte]: parseISO(updatedAfter) } };
+            where = { ...where, updatedAt: { [Op.gte]: parseISO(updatedAfter) } };
         }
 
         if (sort) {

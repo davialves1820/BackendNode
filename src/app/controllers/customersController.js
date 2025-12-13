@@ -72,23 +72,23 @@ class CustomersController {
         if (createdAfter) {
             where = {
                 ...where, createdAt: {
-                    [Op.gte]: ParseIso(createdAfter),
+                    [Op.gte]: parseISO(createdAfter),
                 }
             };
         }
 
         if (updatedBefore) {
             where = {
-                ...where, updateAt: {
-                    [Op.gte]: ParseIso(updatedBefore),
+                ...where, updatedAt: {
+                    [Op.gte]: parseISO(updatedBefore),
                 }
             };
         }
 
         if (updatedAfter) {
             where = {
-                ...where, updateAt: {
-                    [Op.gte]: ParseIso(updatedAfter),
+                ...where, updatedAt: {
+                    [Op.gte]: parseISO(updatedAfter),
                 }
             };
         }
