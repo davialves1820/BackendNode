@@ -1,7 +1,7 @@
 import * as Yup from 'yup';
 import { Op } from 'sequelize';
 import { parseISO } from "date-fns";
-import Customer from '../models/customer.js';
+import Customer from '../models/Customer.js';
 import Contact from '../models/Contact.js';
 
 /**
