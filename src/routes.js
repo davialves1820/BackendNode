@@ -11,6 +11,8 @@ import ContactController from './app/controllers/ContactController.js';
 import UsersController from './app/controllers/UserController.js';
 import SessionsController from './app/controllers/SessionsController.js';
 import FilesController from "./app/controllers/FilesController.js";
+import { createContactSchema, updateContactSchema } from './app/validators/contact.schema.js';
+import validate from './app/middlewares/validate.js';
 
 const routes = new Router();
 const upload = multer(multerConfig);
@@ -31,8 +33,19 @@ routes.delete("/customers/:id", role([ROLES.ADMIN]), CustomersController.delete)
 // Contacts routes
 routes.get("/customers/:customerId/contacts", ContactController.index);
 routes.get("/customers/:customerId/contacts/:id", ContactController.show);
-routes.post("/customers/:customerId/contacts", role([ROLES.ADMIN, ROLES.MANAGER]), ContactController.create);
-routes.put("/customers/:customerId/contacts/:id", role([ROLES.ADMIN, ROLES.MANAGER]), ContactController.update);
+routes.post(
+    "/customers/:customerId/contacts",
+    role([ROLES.ADMIN]),
+    validate(createContactSchema),
+    ContactController.create
+);
+
+routes.put(
+    "/customers/:customerId/contacts/:id",
+    role([ROLES.ADMIN, ROLES.MANAGER]),
+    validate(updateContactSchema),
+    ContactController.update
+);
 routes.delete("/customers/:customerId/contacts/:id", role([ROLES.ADMIN, ROLES.MANAGER]), ContactController.delete);
 
 // Users routes
