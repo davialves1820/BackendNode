@@ -113,8 +113,8 @@ class CustomersController {
             return res.status(200).json(data);
         } catch (error) {
             return res.status(500).json({
-                error: err?.message,
-                original: err?.original,
+                error: error?.message,
+                original: error?.original,
             });
         }
     }
