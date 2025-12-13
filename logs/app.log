@@ -1,0 +1,8 @@
+{"level":"info","message":{"ip":"::1","method":"GET","path":"/customers","requestId":"3a48f824-6b09-4e02-8862-056b807ca6f5"},"timestamp":"2025-12-13T23:49:03.967Z"}
+{"level":"info","message":"::1 - - [13/Dec/2025:23:49:04 +0000] \"GET /customers HTTP/1.1\" 200 924 \"-\" \"PostmanRuntime/7.49.1\"","timestamp":"2025-12-13T23:49:04.451Z"}
+{"level":"info","message":{"ip":"::1","method":"GET","path":"/users","requestId":"da91a78f-e863-4d4f-98b6-ee3ec0240e8a"},"timestamp":"2025-12-13T23:49:55.416Z"}
+{"level":"info","message":"::1 - - [13/Dec/2025:23:49:55 +0000] \"GET /users HTTP/1.1\" 200 1287 \"-\" \"PostmanRuntime/7.49.1\"","timestamp":"2025-12-13T23:49:55.605Z"}
+{"level":"info","message":{"ip":"::1","method":"DELETE","path":"/users/2","requestId":"a8d63c88-7757-4e30-bfc6-b2265b0f076d"},"timestamp":"2025-12-13T23:50:22.683Z"}
+{"level":"info","message":"::1 - - [13/Dec/2025:23:50:22 +0000] \"DELETE /users/2 HTTP/1.1\" 200 - \"-\" \"PostmanRuntime/7.49.1\"","timestamp":"2025-12-13T23:50:22.852Z"}
+{"level":"info","message":{"ip":"::1","method":"DELETE","path":"/users/2","requestId":"2308c326-02a4-4133-bdff-9bc6a25f20fb"},"timestamp":"2025-12-13T23:51:18.881Z"}
+{"level":"info","message":"::1 - - [13/Dec/2025:23:51:19 +0000] \"DELETE /users/2 HTTP/1.1\" 404 26 \"-\" \"PostmanRuntime/7.49.1\"","timestamp":"2025-12-13T23:51:19.244Z"}

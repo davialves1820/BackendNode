@@ -22,6 +22,7 @@
     "dotenv": "^17.2.3",
     "express": "^5.1.0",
     "jsonwebtoken": "^9.0.3",
+    "morgan": "^1.10.1",
     "multer": "^2.0.2",
     "nodemailer": "^7.0.11",
     "nodemon": "^3.1.11",
@@ -31,6 +32,8 @@
     "sucrase": "^3.35.1",
     "swagger-jsdoc": "^6.2.8",
     "swagger-ui-express": "^5.0.1",
+    "uuid": "^13.0.0",
+    "winston": "^3.19.0",
     "youch": "^3.3.4",
     "yup": "^1.7.1"
   },
