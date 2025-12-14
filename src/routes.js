@@ -13,20 +13,14 @@ import SessionsController from './app/controllers/SessionsController.js';
 import FilesController from "./app/controllers/FilesController.js";
 import { createContactSchema, updateContactSchema } from './app/validators/contact.schema.js';
 import validate from './app/middlewares/validate.js';
+import HealthController from "./app/controllers/HealthController.js";
 
 const routes = new Router();
 const upload = multer(multerConfig);
 
 // Public routes
 routes.post("/sessions", SessionsController.create);
-routes.get("/health", (req, res) => {
-    return res.json({
-        status: "ok",
-        uptime: process.uptime(),
-        timestamp: new Date(),
-    });
-});
-
+routes.get("/health", HealthController.index);
 
 // Apply authentication to all routes below
 routes.use(auth);
