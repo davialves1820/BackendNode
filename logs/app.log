@@ -6,3 +6,21 @@
 {"level":"info","message":"::1 - - [13/Dec/2025:23:50:22 +0000] \"DELETE /users/2 HTTP/1.1\" 200 - \"-\" \"PostmanRuntime/7.49.1\"","timestamp":"2025-12-13T23:50:22.852Z"}
 {"level":"info","message":{"ip":"::1","method":"DELETE","path":"/users/2","requestId":"2308c326-02a4-4133-bdff-9bc6a25f20fb"},"timestamp":"2025-12-13T23:51:18.881Z"}
 {"level":"info","message":"::1 - - [13/Dec/2025:23:51:19 +0000] \"DELETE /users/2 HTTP/1.1\" 404 26 \"-\" \"PostmanRuntime/7.49.1\"","timestamp":"2025-12-13T23:51:19.244Z"}
+{"level":"info","message":{"ip":"::1","method":"GET","path":"/health","requestId":"38e21cf2-7e1b-4fbe-91ac-ae384d342c8a"},"timestamp":"2025-12-14T00:15:40.904Z"}
+{"level":"info","message":"::1 - - [14/Dec/2025:00:15:40 +0000] \"GET /health HTTP/1.1\" 500 84 \"-\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36\"","timestamp":"2025-12-14T00:15:40.930Z"}
+{"level":"info","message":{"ip":"::1","method":"GET","path":"/favicon.ico","requestId":"b77cffaa-a209-493d-9487-213f2453f377"},"timestamp":"2025-12-14T00:15:40.993Z"}
+{"level":"info","message":"::1 - - [14/Dec/2025:00:15:40 +0000] \"GET /favicon.ico HTTP/1.1\" 401 35 \"http://localhost:3000/health\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36\"","timestamp":"2025-12-14T00:15:40.997Z"}
+{"level":"info","message":{"ip":"::1","method":"GET","path":"/health","requestId":"a2a2ce72-614b-46ce-bec2-4417db64a7c8"},"timestamp":"2025-12-14T00:24:53.944Z"}
+{"level":"info","message":"::1 - - [14/Dec/2025:00:24:53 +0000] \"GET /health HTTP/1.1\" 503 132 \"-\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36\"","timestamp":"2025-12-14T00:24:53.966Z"}
+{"level":"info","message":{"ip":"::1","method":"GET","path":"/favicon.ico","requestId":"48e3ad7c-bbaf-4d66-bc9b-e991aa660848"},"timestamp":"2025-12-14T00:24:54.036Z"}
+{"level":"info","message":"::1 - - [14/Dec/2025:00:24:54 +0000] \"GET /favicon.ico HTTP/1.1\" 401 35 \"http://localhost:3000/health\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36\"","timestamp":"2025-12-14T00:24:54.041Z"}
+{"level":"info","message":{"ip":"::1","method":"GET","path":"/users","requestId":"d6ebc2b0-ccbb-4f64-b9ba-89c40c585f50"},"timestamp":"2025-12-14T00:25:13.189Z"}
+{"level":"info","message":"::1 - - [14/Dec/2025:00:25:13 +0000] \"GET /users HTTP/1.1\" 200 1128 \"-\" \"PostmanRuntime/7.49.1\"","timestamp":"2025-12-14T00:25:13.520Z"}
+{"level":"info","message":{"ip":"::1","method":"GET","path":"/health","requestId":"8d73f05b-971b-42f0-980c-e93fda6d4975"},"timestamp":"2025-12-14T00:25:17.640Z"}
+{"level":"info","message":"::1 - - [14/Dec/2025:00:25:17 +0000] \"GET /health HTTP/1.1\" 503 132 \"-\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36\"","timestamp":"2025-12-14T00:25:17.643Z"}
+{"level":"info","message":{"ip":"::1","method":"GET","path":"/favicon.ico","requestId":"051b67b7-72ba-46f3-b9a9-0ebdc1145150"},"timestamp":"2025-12-14T00:25:17.714Z"}
+{"level":"info","message":"::1 - - [14/Dec/2025:00:25:17 +0000] \"GET /favicon.ico HTTP/1.1\" 401 35 \"http://localhost:3000/health\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36\"","timestamp":"2025-12-14T00:25:17.740Z"}
+{"level":"info","message":{"ip":"::1","method":"GET","path":"/health","requestId":"5805ec87-dc1a-4422-b804-75d6b44f6517"},"timestamp":"2025-12-14T00:28:02.580Z"}
+{"level":"info","message":"::1 - - [14/Dec/2025:00:28:02 +0000] \"GET /health HTTP/1.1\" 200 126 \"-\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36\"","timestamp":"2025-12-14T00:28:02.905Z"}
+{"level":"info","message":{"ip":"::1","method":"GET","path":"/favicon.ico","requestId":"315d44ea-d304-4fc9-b03d-7cd2d8dad3f5"},"timestamp":"2025-12-14T00:28:02.922Z"}
+{"level":"info","message":"::1 - - [14/Dec/2025:00:28:02 +0000] \"GET /favicon.ico HTTP/1.1\" 401 35 \"http://localhost:3000/health\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36\"","timestamp":"2025-12-14T00:28:02.926Z"}
