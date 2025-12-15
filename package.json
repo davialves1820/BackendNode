@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "nodemon ./src/server.js",
-    "test": "cross-env NODE_ENV=test jest --runInBand",
+    "test": "cross-env NODE_ENV=test node --experimental-vm-modules node_modules/jest/bin/jest.js --runInBand",
     "db:test": "sequelize-cli db:migrate --env test",
     "db:test:reset": "sequelize-cli db:migrate:undo:all --env test && sequelize-cli db:migrate --env test",
     "queue": "node ./src/queue.js"

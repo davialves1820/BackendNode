@@ -1,4 +1,4 @@
-module.exports = {
+export default {
     testEnvironment: "node",
 
     globalSetup: "<rootDir>/tests/setup.js",
@@ -7,8 +7,6 @@ module.exports = {
     setupFilesAfterEnv: ["<rootDir>/jest.setup.js"],
 
     transform: {},
-
-    extensionsToTreatAsEsm: [],
 
     moduleNameMapper: {
         "^(\\.{1,2}/.*)\\.js$": "$1",
