@@ -1,5 +1,5 @@
-import database from "../src/database";
-import User from "../src/app/models/User";
+import database from "../src/database/index.js";
+import User from "../src/app/models/User.js";
 
 const WAIT = ms => new Promise(r => setTimeout(r, ms));
 
@@ -21,14 +21,15 @@ async function waitForDatabase() {
     throw new Error("❌ Banco de testes não respondeu a tempo");
 }
 
-module.exports = async () => {
+export default async () => {
     await waitForDatabase();
     await database.connection.sync({ force: true });
 
-    // cria o usuário para o teste de login
+    // usuário base para testes de autenticação
     await User.create({
         name: "Davi",
         email: "davi@gmail.com",
-        password: "12345678"
+        password: "12345678",
+        role: "ADMIN",
     });
 };

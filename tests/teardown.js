@@ -1,5 +1,5 @@
-import database from "../src/database";
+import database from "../src/database/index.js";
 
-module.exports = async () => {
+export default async () => {
     await database.connection.close();
 };
