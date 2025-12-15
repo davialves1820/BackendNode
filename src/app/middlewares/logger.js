@@ -1,8 +1,8 @@
-import { v4 as uuid } from "uuid";
+import crypto from "crypto";
 import logger from "../../config/logger.js";
 
 export default (req, res, next) => {
-    const requestId = uuid();
+    const requestId = crypto.randomUUID();
 
     req.requestId = requestId;
 
@@ -10,8 +10,10 @@ export default (req, res, next) => {
         requestId,
         method: req.method,
         path: req.originalUrl,
-        ip: req.ip,
+        time: new Date().toISOString(),
     });
+
+    res.setHeader("X-Request-Id", requestId);
 
     next();
 };
