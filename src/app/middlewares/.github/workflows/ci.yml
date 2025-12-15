@@ -1,0 +1,72 @@
+name: CI - Node.js API
+
+on:
+  push:
+    branches: [ "main", "develop" ]
+  pull_request:
+    branches: [ "main", "develop" ]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    services:
+      postgres:
+        image: postgres:16
+        env:
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: postgres
+          POSTGRES_DB: databaseTeste
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd="pg_isready -U postgres -d databaseTeste"
+          --health-interval=5s
+          --health-timeout=5s
+          --health-retries=5
+
+      redis:
+        image: redis:7
+        ports:
+          - 6379:6379
+        options: >-
+          --health-cmd="redis-cli ping"
+          --health-interval=5s
+          --health-timeout=5s
+          --health-retries=5
+
+    steps:
+      - name: 📥 Checkout do código
+        uses: actions/checkout@v4
+
+      - name: 🟢 Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: "npm"
+
+      - name: 📦 Instalar dependências
+        run: npm ci
+
+      - name: ⚙️ Criar arquivo .env.test
+        run: |
+          cat <<EOF > .env
+          NODE_ENV=test
+          DB_HOST=localhost
+          DB_USER=postgres
+          DB_PASS=postgres
+          DB_NAME=databaseTeste
+          DB_DIALECT=postgres
+          DB_PORT=5432
+          REDIS_HOST=localhost
+          REDIS_PORT=6379
+          SECRET=secret_test
+          EXPIRESIN=7d
+          EOF
+
+      # Se você usa migrations
+      # - name: 🗄️ Rodar migrations
+      #   run: npx sequelize-cli db:migrate
+
+      - name: 🧪 Rodar testes
+        run: npm test
