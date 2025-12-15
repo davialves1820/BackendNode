@@ -30,3 +30,15 @@
 {"level":"info","message":"::ffff:127.0.0.1 - - [15/Dec/2025:11:39:46 +0000] \"GET /customers HTTP/1.1\" 200 2 \"-\" \"-\"","timestamp":"2025-12-15T11:39:46.575Z"}
 {"level":"info","message":{"method":"POST","path":"/customers","requestId":"c9e6c139-a99d-4537-9417-540be1352398","time":"2025-12-15T11:39:46.594Z"},"timestamp":"2025-12-15T11:39:46.595Z"}
 {"level":"info","message":"::ffff:127.0.0.1 - - [15/Dec/2025:11:39:46 +0000] \"POST /customers HTTP/1.1\" 200 155 \"-\" \"-\"","timestamp":"2025-12-15T11:39:46.617Z"}
+{"level":"info","message":{"method":"GET","path":"/customers","requestId":"0f75ede3-7ddf-4566-9829-683e2c8f161d","time":"2025-12-15T12:33:24.395Z"},"timestamp":"2025-12-15T12:33:24.397Z"}
+{"level":"info","message":"::ffff:127.0.0.1 - - [15/Dec/2025:12:33:24 +0000] \"GET /customers HTTP/1.1\" 200 171 \"-\" \"-\"","timestamp":"2025-12-15T12:33:24.435Z"}
+{"level":"info","message":{"method":"POST","path":"/customers","requestId":"751a0054-7f3b-47f3-9c7d-904858e79b2d","time":"2025-12-15T12:33:24.470Z"},"timestamp":"2025-12-15T12:33:24.470Z"}
+{"level":"info","message":"::ffff:127.0.0.1 - - [15/Dec/2025:12:33:24 +0000] \"POST /customers HTTP/1.1\" 200 155 \"-\" \"-\"","timestamp":"2025-12-15T12:33:24.484Z"}
+{"level":"info","message":{"method":"POST","path":"/sessions","requestId":"8788b45b-7a99-4d4a-a2b9-5d9137063f2f","time":"2025-12-15T12:33:26.123Z"},"timestamp":"2025-12-15T12:33:26.123Z"}
+{"level":"info","message":"::ffff:127.0.0.1 - - [15/Dec/2025:12:33:26 +0000] \"POST /sessions HTTP/1.1\" 200 237 \"-\" \"-\"","timestamp":"2025-12-15T12:33:26.170Z"}
+{"level":"info","message":{"method":"POST","path":"/sessions","requestId":"2b21dfdd-87b4-4405-bcb9-050096411a39","time":"2025-12-15T12:36:05.009Z"},"timestamp":"2025-12-15T12:36:05.011Z"}
+{"level":"info","message":"::ffff:127.0.0.1 - - [15/Dec/2025:12:36:05 +0000] \"POST /sessions HTTP/1.1\" 200 237 \"-\" \"-\"","timestamp":"2025-12-15T12:36:05.064Z"}
+{"level":"info","message":{"method":"GET","path":"/customers","requestId":"9cbf4728-d4cd-4e78-860f-0baaa13007a3","time":"2025-12-15T12:36:06.516Z"},"timestamp":"2025-12-15T12:36:06.516Z"}
+{"level":"info","message":"::ffff:127.0.0.1 - - [15/Dec/2025:12:36:06 +0000] \"GET /customers HTTP/1.1\" 200 2 \"-\" \"-\"","timestamp":"2025-12-15T12:36:06.540Z"}
+{"level":"info","message":{"method":"POST","path":"/customers","requestId":"1bd153c4-39c1-404b-88cf-743982daf6f1","time":"2025-12-15T12:36:06.560Z"},"timestamp":"2025-12-15T12:36:06.560Z"}
+{"level":"info","message":"::ffff:127.0.0.1 - - [15/Dec/2025:12:36:06 +0000] \"POST /customers HTTP/1.1\" 200 155 \"-\" \"-\"","timestamp":"2025-12-15T12:36:06.573Z"}
