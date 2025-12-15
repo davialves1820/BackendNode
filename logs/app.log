@@ -42,3 +42,101 @@
 {"level":"info","message":"::ffff:127.0.0.1 - - [15/Dec/2025:12:36:06 +0000] \"GET /customers HTTP/1.1\" 200 2 \"-\" \"-\"","timestamp":"2025-12-15T12:36:06.540Z"}
 {"level":"info","message":{"method":"POST","path":"/customers","requestId":"1bd153c4-39c1-404b-88cf-743982daf6f1","time":"2025-12-15T12:36:06.560Z"},"timestamp":"2025-12-15T12:36:06.560Z"}
 {"level":"info","message":"::ffff:127.0.0.1 - - [15/Dec/2025:12:36:06 +0000] \"POST /customers HTTP/1.1\" 200 155 \"-\" \"-\"","timestamp":"2025-12-15T12:36:06.573Z"}
+{"level":"info","message":{"method":"GET","path":"/customers","requestId":"cdd71bc9-737d-430f-a3c6-d9f1b27570ec","time":"2025-12-15T18:07:06.879Z"},"timestamp":"2025-12-15T18:07:06.882Z"}
+{"level":"info","message":"::1 - - [15/Dec/2025:18:07:07 +0000] \"GET /customers HTTP/1.1\" 200 428 \"-\" \"PostmanRuntime/7.49.1\"","timestamp":"2025-12-15T18:07:07.330Z"}
+{"level":"info","message":{"method":"GET","path":"/customers","requestId":"589f0b29-c01f-48ac-b35c-3bb062642c9c","time":"2025-12-15T18:07:13.421Z"},"timestamp":"2025-12-15T18:07:13.422Z"}
+{"level":"info","message":"::1 - - [15/Dec/2025:18:07:13 +0000] \"GET /customers HTTP/1.1\" 200 428 \"-\" \"PostmanRuntime/7.49.1\"","timestamp":"2025-12-15T18:07:13.434Z"}
+{"level":"info","message":{"method":"GET","path":"/customers/2","requestId":"b0dc3933-0e45-46cb-94bf-f702e8e29068","time":"2025-12-15T18:07:23.950Z"},"timestamp":"2025-12-15T18:07:23.950Z"}
+{"level":"info","message":"::1 - - [15/Dec/2025:18:07:24 +0000] \"GET /customers/2 HTTP/1.1\" 200 147 \"-\" \"PostmanRuntime/7.49.1\"","timestamp":"2025-12-15T18:07:24.121Z"}
+{"level":"info","message":{"method":"GET","path":"/customers/2/contact","requestId":"ff5538da-a28e-4d5f-b561-3556246c1e06","time":"2025-12-15T18:07:40.809Z"},"timestamp":"2025-12-15T18:07:40.809Z"}
+{"level":"info","message":"::1 - - [15/Dec/2025:18:07:40 +0000] \"GET /customers/2/contact HTTP/1.1\" 404 158 \"-\" \"PostmanRuntime/7.49.1\"","timestamp":"2025-12-15T18:07:40.818Z"}
+{"level":"info","message":{"method":"GET","path":"/customers/2/contacts","requestId":"2272964d-2e39-413d-9ae7-11b3182df221","time":"2025-12-15T18:07:48.381Z"},"timestamp":"2025-12-15T18:07:48.381Z"}
+{"level":"info","message":"::1 - - [15/Dec/2025:18:07:48 +0000] \"GET /customers/2/contacts HTTP/1.1\" 200 661 \"-\" \"PostmanRuntime/7.49.1\"","timestamp":"2025-12-15T18:07:48.529Z"}
+{"level":"info","message":{"method":"GET","path":"/customers/2/contacts/6","requestId":"5b9145e0-fab4-4fd8-9e6d-e95e77b82753","time":"2025-12-15T18:07:56.371Z"},"timestamp":"2025-12-15T18:07:56.371Z"}
+{"level":"info","message":"::1 - - [15/Dec/2025:18:07:56 +0000] \"GET /customers/2/contacts/6 HTTP/1.1\" 200 182 \"-\" \"PostmanRuntime/7.49.1\"","timestamp":"2025-12-15T18:07:56.382Z"}
+{"level":"info","message":{"method":"PUT","path":"/customers/2/contacts/6","requestId":"c596dbe9-6ecf-4974-8421-2c162e3e780a","time":"2025-12-15T18:08:21.084Z"},"timestamp":"2025-12-15T18:08:21.084Z"}
+{"level":"info","message":"::1 - - [15/Dec/2025:18:08:21 +0000] \"PUT /customers/2/contacts/6 HTTP/1.1\" 200 184 \"-\" \"PostmanRuntime/7.49.1\"","timestamp":"2025-12-15T18:08:21.325Z"}
+{"level":"info","message":{"method":"DELETE","path":"/customers/2/contacts/6","requestId":"25c3ccf5-f2f6-41d3-b244-17535185b2f6","time":"2025-12-15T18:08:33.990Z"},"timestamp":"2025-12-15T18:08:33.990Z"}
+{"level":"info","message":"::1 - - [15/Dec/2025:18:08:34 +0000] \"DELETE /customers/2/contacts/6 HTTP/1.1\" 204 - \"-\" \"PostmanRuntime/7.49.1\"","timestamp":"2025-12-15T18:08:34.169Z"}
+{"level":"info","message":{"method":"POST","path":"/customers/2/contacts","requestId":"d95e5615-1849-4ab4-a41b-32b95f691b15","time":"2025-12-15T18:08:51.856Z"},"timestamp":"2025-12-15T18:08:51.856Z"}
+{"level":"info","message":"::1 - - [15/Dec/2025:18:08:52 +0000] \"POST /customers/2/contacts HTTP/1.1\" 201 186 \"-\" \"PostmanRuntime/7.49.1\"","timestamp":"2025-12-15T18:08:52.014Z"}
+{"level":"info","message":{"method":"GET","path":"/customers","requestId":"69d72d66-89ce-458c-9430-1bdec78706a3","time":"2025-12-15T18:09:01.413Z"},"timestamp":"2025-12-15T18:09:01.413Z"}
+{"level":"info","message":"::1 - - [15/Dec/2025:18:09:01 +0000] \"GET /customers HTTP/1.1\" 200 430 \"-\" \"PostmanRuntime/7.49.1\"","timestamp":"2025-12-15T18:09:01.430Z"}
+{"level":"info","message":{"method":"DELETE","path":"/customers/1","requestId":"2811c875-55cf-4bff-b792-bac053e9722f","time":"2025-12-15T18:09:25.115Z"},"timestamp":"2025-12-15T18:09:25.115Z"}
+{"level":"info","message":"::1 - - [15/Dec/2025:18:09:25 +0000] \"DELETE /customers/1 HTTP/1.1\" 204 - \"-\" \"PostmanRuntime/7.49.1\"","timestamp":"2025-12-15T18:09:25.248Z"}
+{"level":"info","message":{"method":"POST","path":"/customers","requestId":"4576e468-0338-43b4-a0b8-3fe204e15bb9","time":"2025-12-15T18:09:31.731Z"},"timestamp":"2025-12-15T18:09:31.731Z"}
+{"level":"info","message":"::1 - - [15/Dec/2025:18:09:31 +0000] \"POST /customers HTTP/1.1\" 201 145 \"-\" \"PostmanRuntime/7.49.1\"","timestamp":"2025-12-15T18:09:31.745Z"}
+{"level":"info","message":{"method":"PUT","path":"/customers/16","requestId":"4fcca62d-92f3-43b5-abce-aabcc300bda2","time":"2025-12-15T18:09:48.218Z"},"timestamp":"2025-12-15T18:09:48.218Z"}
+{"level":"info","message":"::1 - - [15/Dec/2025:18:09:48 +0000] \"PUT /customers/16 HTTP/1.1\" 200 147 \"-\" \"PostmanRuntime/7.49.1\"","timestamp":"2025-12-15T18:09:48.385Z"}
+{"level":"info","message":{"method":"GET","path":"/users","requestId":"0c9a0631-ef44-4c26-8f23-a91cdc21beac","time":"2025-12-15T18:38:39.754Z"},"timestamp":"2025-12-15T18:38:39.757Z"}
+{"level":"info","message":"::1 - - [15/Dec/2025:18:38:40 +0000] \"GET /users HTTP/1.1\" 200 1128 \"-\" \"PostmanRuntime/7.49.1\"","timestamp":"2025-12-15T18:38:40.130Z"}
+{"level":"info","message":{"method":"GET","path":"/users/5","requestId":"3ecf25d7-6e85-480c-9271-b66871e2c425","time":"2025-12-15T18:38:51.523Z"},"timestamp":"2025-12-15T18:38:51.523Z"}
+{"level":"info","message":"::1 - - [15/Dec/2025:18:38:51 +0000] \"GET /users/5 HTTP/1.1\" 200 261 \"-\" \"PostmanRuntime/7.49.1\"","timestamp":"2025-12-15T18:38:51.667Z"}
+{"level":"info","message":{"method":"GET","path":"/users/5","requestId":"81394608-e3fa-47ab-a4db-dda36f0af3e9","time":"2025-12-15T18:40:13.318Z"},"timestamp":"2025-12-15T18:40:13.321Z"}
+{"level":"info","message":"::1 - - [15/Dec/2025:18:40:13 +0000] \"GET /users/5 HTTP/1.1\" 200 261 \"-\" \"PostmanRuntime/7.49.1\"","timestamp":"2025-12-15T18:40:13.749Z"}
+{"level":"info","message":{"method":"GET","path":"/users","requestId":"561b651b-f320-4255-a63d-9cf8e0f7843d","time":"2025-12-15T18:41:24.711Z"},"timestamp":"2025-12-15T18:41:24.714Z"}
+{"level":"info","message":"::1 - - [15/Dec/2025:18:41:25 +0000] \"GET /users HTTP/1.1\" 200 1128 \"-\" \"PostmanRuntime/7.49.1\"","timestamp":"2025-12-15T18:41:25.096Z"}
+{"level":"info","message":{"method":"GET","path":"/users/5","requestId":"895ec36f-b71b-449a-bd68-4d0696a2c922","time":"2025-12-15T18:41:33.379Z"},"timestamp":"2025-12-15T18:41:33.379Z"}
+{"level":"info","message":"::1 - - [15/Dec/2025:18:41:33 +0000] \"GET /users/5 HTTP/1.1\" 200 261 \"-\" \"PostmanRuntime/7.49.1\"","timestamp":"2025-12-15T18:41:33.414Z"}
+{"level":"info","message":{"method":"GET","path":"/users/5","requestId":"65481112-f52b-4b5a-84c5-02bc2a63f4d0","time":"2025-12-15T18:42:13.965Z"},"timestamp":"2025-12-15T18:42:13.969Z"}
+{"level":"info","message":"::1 - - [15/Dec/2025:18:42:14 +0000] \"GET /users/5 HTTP/1.1\" 200 167 \"-\" \"PostmanRuntime/7.49.1\"","timestamp":"2025-12-15T18:42:14.339Z"}
+{"level":"info","message":{"method":"DELETE","path":"/users/5","requestId":"ca2e6ce3-ea0e-4c5e-a018-f9eb69d24d8d","time":"2025-12-15T18:43:09.897Z"},"timestamp":"2025-12-15T18:43:09.897Z"}
+{"level":"info","message":"::1 - - [15/Dec/2025:18:43:10 +0000] \"DELETE /users/5 HTTP/1.1\" 204 - \"-\" \"PostmanRuntime/7.49.1\"","timestamp":"2025-12-15T18:43:10.035Z"}
+{"level":"info","message":{"method":"POST","path":"/users/5","requestId":"2fb19b06-71d4-4269-a8c8-90b512841f44","time":"2025-12-15T18:43:15.243Z"},"timestamp":"2025-12-15T18:43:15.243Z"}
+{"level":"info","message":"::1 - - [15/Dec/2025:18:43:15 +0000] \"POST /users/5 HTTP/1.1\" 404 147 \"-\" \"PostmanRuntime/7.49.1\"","timestamp":"2025-12-15T18:43:15.251Z"}
+{"level":"info","message":{"method":"POST","path":"/users","requestId":"c50bd91a-f153-486b-a523-25f098bc3bb8","time":"2025-12-15T18:43:21.117Z"},"timestamp":"2025-12-15T18:43:21.117Z"}
+{"level":"info","message":"::1 - - [15/Dec/2025:18:43:21 +0000] \"POST /users HTTP/1.1\" 404 26 \"-\" \"PostmanRuntime/7.49.1\"","timestamp":"2025-12-15T18:43:21.132Z"}
+{"level":"info","message":{"method":"POST","path":"/users","requestId":"41b48879-dd63-4872-ac44-997b39a8c760","time":"2025-12-15T18:45:28.499Z"},"timestamp":"2025-12-15T18:45:28.501Z"}
+{"level":"info","message":"::1 - - [15/Dec/2025:18:45:28 +0000] \"POST /users HTTP/1.1\" 404 26 \"-\" \"PostmanRuntime/7.49.1\"","timestamp":"2025-12-15T18:45:28.531Z"}
+{"level":"info","message":{"method":"POST","path":"/users","requestId":"7a2a1de2-c89c-4e88-b49d-e66d80d531c3","time":"2025-12-15T18:46:35.458Z"},"timestamp":"2025-12-15T18:46:35.461Z"}
+{"level":"info","message":"::1 - - [15/Dec/2025:18:46:35 +0000] \"POST /users HTTP/1.1\" 404 26 \"-\" \"PostmanRuntime/7.49.1\"","timestamp":"2025-12-15T18:46:35.497Z"}
+{"level":"info","message":{"method":"POST","path":"/users","requestId":"71b6c2c8-f651-4753-8da8-f915692ab457","time":"2025-12-15T18:47:37.711Z"},"timestamp":"2025-12-15T18:47:37.714Z"}
+{"level":"info","message":"::1 - - [15/Dec/2025:18:47:37 +0000] \"POST /users HTTP/1.1\" 404 26 \"-\" \"PostmanRuntime/7.49.1\"","timestamp":"2025-12-15T18:47:37.748Z"}
+{"level":"info","message":{"method":"POST","path":"/users","requestId":"7239ff0e-83b7-4bf1-bf94-da424f385902","time":"2025-12-15T18:47:53.409Z"},"timestamp":"2025-12-15T18:47:53.412Z"}
+{"level":"info","message":"::1 - - [15/Dec/2025:18:47:53 +0000] \"POST /users HTTP/1.1\" 404 26 \"-\" \"PostmanRuntime/7.49.1\"","timestamp":"2025-12-15T18:47:53.465Z"}
+{"level":"info","message":{"method":"POST","path":"/users","requestId":"8ec6f7f2-8a41-45ac-b3cb-682ee618f902","time":"2025-12-15T18:48:56.370Z"},"timestamp":"2025-12-15T18:48:56.374Z"}
+{"level":"info","message":"::1 - - [15/Dec/2025:18:48:56 +0000] \"POST /users HTTP/1.1\" 201 270 \"-\" \"PostmanRuntime/7.49.1\"","timestamp":"2025-12-15T18:48:56.920Z"}
+{"level":"info","message":{"method":"PUT","path":"/users","requestId":"b8ffda2e-4c76-433b-aa92-e25994e4fcca","time":"2025-12-15T18:49:24.937Z"},"timestamp":"2025-12-15T18:49:24.937Z"}
+{"level":"info","message":"::1 - - [15/Dec/2025:18:49:24 +0000] \"PUT /users HTTP/1.1\" 404 144 \"-\" \"PostmanRuntime/7.49.1\"","timestamp":"2025-12-15T18:49:24.952Z"}
+{"level":"info","message":{"method":"GET","path":"/users","requestId":"e0b0c322-3310-4465-b012-85e057ed0e0f","time":"2025-12-15T18:49:32.070Z"},"timestamp":"2025-12-15T18:49:32.070Z"}
+{"level":"info","message":"::1 - - [15/Dec/2025:18:49:32 +0000] \"GET /users HTTP/1.1\" 200 1129 \"-\" \"PostmanRuntime/7.49.1\"","timestamp":"2025-12-15T18:49:32.234Z"}
+{"level":"info","message":{"method":"PUT","path":"/users/13","requestId":"8f60c2d1-7e84-43a0-94ef-f1b6648f6e99","time":"2025-12-15T18:49:43.445Z"},"timestamp":"2025-12-15T18:49:43.445Z"}
+{"level":"info","message":"::1 - - [15/Dec/2025:18:49:43 +0000] \"PUT /users/13 HTTP/1.1\" 200 178 \"-\" \"PostmanRuntime/7.49.1\"","timestamp":"2025-12-15T18:49:43.648Z"}
+{"level":"info","message":{"method":"DELETE","path":"/users/13","requestId":"7a39d2bd-f0ef-4555-9ef9-de20a5ebe60d","time":"2025-12-15T18:51:35.794Z"},"timestamp":"2025-12-15T18:51:35.798Z"}
+{"level":"info","message":"::1 - - [15/Dec/2025:18:51:36 +0000] \"DELETE /users/13 HTTP/1.1\" 204 - \"-\" \"PostmanRuntime/7.49.1\"","timestamp":"2025-12-15T18:51:36.162Z"}
+{"level":"info","message":{"method":"POST","path":"/users","requestId":"430975e6-28da-488a-ad3e-c4945b91dc7e","time":"2025-12-15T18:51:41.239Z"},"timestamp":"2025-12-15T18:51:41.239Z"}
+{"level":"info","message":"::1 - - [15/Dec/2025:18:51:41 +0000] \"POST /users HTTP/1.1\" 201 154 \"-\" \"PostmanRuntime/7.49.1\"","timestamp":"2025-12-15T18:51:41.389Z"}
+{"level":"info","message":{"method":"DELETE","path":"/users/14","requestId":"987a41f8-3aa4-48f7-83dd-394ab9fe4f59","time":"2025-12-15T18:54:56.158Z"},"timestamp":"2025-12-15T18:54:56.161Z"}
+{"level":"info","message":"::1 - - [15/Dec/2025:18:54:56 +0000] \"DELETE /users/14 HTTP/1.1\" 204 - \"-\" \"PostmanRuntime/7.49.1\"","timestamp":"2025-12-15T18:54:56.640Z"}
+{"level":"info","message":{"method":"POST","path":"/users","requestId":"d38dd7a4-fce0-4867-9768-a74ddacee9d7","time":"2025-12-15T18:55:03.400Z"},"timestamp":"2025-12-15T18:55:03.400Z"}
+{"level":"info","message":"::1 - - [15/Dec/2025:18:55:03 +0000] \"POST /users HTTP/1.1\" 201 154 \"-\" \"PostmanRuntime/7.49.1\"","timestamp":"2025-12-15T18:55:03.548Z"}
+{"level":"info","message":{"method":"DELETE","path":"/users/15","requestId":"af209f0c-01e0-4f12-89d3-9150f78eb27d","time":"2025-12-15T18:57:15.960Z"},"timestamp":"2025-12-15T18:57:15.963Z"}
+{"level":"info","message":"::1 - - [15/Dec/2025:18:57:16 +0000] \"DELETE /users/15 HTTP/1.1\" 204 - \"-\" \"PostmanRuntime/7.49.1\"","timestamp":"2025-12-15T18:57:16.485Z"}
+{"level":"info","message":{"method":"POST","path":"/users","requestId":"ff28f080-8fa2-4e00-825b-a2101503f951","time":"2025-12-15T18:57:22.497Z"},"timestamp":"2025-12-15T18:57:22.497Z"}
+{"level":"info","message":"::1 - - [15/Dec/2025:18:57:22 +0000] \"POST /users HTTP/1.1\" 201 154 \"-\" \"PostmanRuntime/7.49.1\"","timestamp":"2025-12-15T18:57:22.657Z"}
+{"level":"info","message":{"method":"DELETE","path":"/users/15","requestId":"108d559d-c7e8-422a-8f40-8cb10f395869","time":"2025-12-15T18:58:27.289Z"},"timestamp":"2025-12-15T18:58:27.291Z"}
+{"level":"info","message":"::1 - - [15/Dec/2025:18:58:27 +0000] \"DELETE /users/15 HTTP/1.1\" 404 26 \"-\" \"PostmanRuntime/7.49.1\"","timestamp":"2025-12-15T18:58:27.615Z"}
+{"level":"info","message":{"method":"DELETE","path":"/users/16","requestId":"bfef2cf5-c260-48ef-982f-a34c742eced5","time":"2025-12-15T18:58:35.418Z"},"timestamp":"2025-12-15T18:58:35.419Z"}
+{"level":"info","message":"::1 - - [15/Dec/2025:18:58:35 +0000] \"DELETE /users/16 HTTP/1.1\" 204 - \"-\" \"PostmanRuntime/7.49.1\"","timestamp":"2025-12-15T18:58:35.440Z"}
+{"level":"info","message":{"method":"POST","path":"/users","requestId":"e882ed5c-f9da-4068-92e0-09eda7aa462c","time":"2025-12-15T18:59:24.021Z"},"timestamp":"2025-12-15T18:59:24.021Z"}
+{"level":"info","message":"::1 - - [15/Dec/2025:18:59:24 +0000] \"POST /users HTTP/1.1\" 201 154 \"-\" \"PostmanRuntime/7.49.1\"","timestamp":"2025-12-15T18:59:24.292Z"}
+{"level":"info","message":{"method":"POST","path":"/users","requestId":"be1e6d62-fa08-4f26-87c0-22a7bf4e3f06","time":"2025-12-15T19:00:21.861Z"},"timestamp":"2025-12-15T19:00:21.861Z"}
+{"level":"info","message":"::1 - - [15/Dec/2025:19:00:22 +0000] \"POST /users HTTP/1.1\" 500 84 \"-\" \"PostmanRuntime/7.49.1\"","timestamp":"2025-12-15T19:00:22.077Z"}
+{"level":"info","message":{"method":"DELETE","path":"/users/18","requestId":"b4ea568a-6ece-4f69-bfcd-3b2f94f6beba","time":"2025-12-15T19:00:38.861Z"},"timestamp":"2025-12-15T19:00:38.861Z"}
+{"level":"info","message":"::1 - - [15/Dec/2025:19:00:39 +0000] \"DELETE /users/18 HTTP/1.1\" 404 26 \"-\" \"PostmanRuntime/7.49.1\"","timestamp":"2025-12-15T19:00:39.100Z"}
+{"level":"info","message":{"method":"DELETE","path":"/users/17","requestId":"afea8e99-dc2a-429c-a62f-b3c42932458d","time":"2025-12-15T19:00:42.370Z"},"timestamp":"2025-12-15T19:00:42.370Z"}
+{"level":"info","message":"::1 - - [15/Dec/2025:19:00:42 +0000] \"DELETE /users/17 HTTP/1.1\" 204 - \"-\" \"PostmanRuntime/7.49.1\"","timestamp":"2025-12-15T19:00:42.389Z"}
+{"level":"info","message":{"method":"POST","path":"/users","requestId":"59ebc9b8-baca-4787-a263-dd49182af802","time":"2025-12-15T19:00:49.201Z"},"timestamp":"2025-12-15T19:00:49.202Z"}
+{"level":"info","message":"::1 - - [15/Dec/2025:19:00:49 +0000] \"POST /users HTTP/1.1\" 201 154 \"-\" \"PostmanRuntime/7.49.1\"","timestamp":"2025-12-15T19:00:49.329Z"}
+{"level":"info","message":{"method":"DELETE","path":"/users/19","requestId":"f29e5c5e-5f32-4709-ac61-275987230b48","time":"2025-12-15T19:04:19.447Z"},"timestamp":"2025-12-15T19:04:19.449Z"}
+{"level":"info","message":"::1 - - [15/Dec/2025:19:04:19 +0000] \"DELETE /users/19 HTTP/1.1\" 204 - \"-\" \"PostmanRuntime/7.49.1\"","timestamp":"2025-12-15T19:04:19.770Z"}
+{"level":"info","message":{"method":"POST","path":"/users","requestId":"a9fff7ee-d9ba-42b9-b7d9-6e963915b5cd","time":"2025-12-15T19:04:24.301Z"},"timestamp":"2025-12-15T19:04:24.301Z"}
+{"level":"info","message":"::1 - - [15/Dec/2025:19:04:24 +0000] \"POST /users HTTP/1.1\" 201 154 \"-\" \"PostmanRuntime/7.49.1\"","timestamp":"2025-12-15T19:04:24.416Z"}
+{"level":"info","message":{"method":"DELETE","path":"/users/20","requestId":"910da499-2927-4577-afb3-1063d641a165","time":"2025-12-15T19:05:11.553Z"},"timestamp":"2025-12-15T19:05:11.555Z"}
+{"level":"info","message":"::1 - - [15/Dec/2025:19:05:11 +0000] \"DELETE /users/20 HTTP/1.1\" 204 - \"-\" \"PostmanRuntime/7.49.1\"","timestamp":"2025-12-15T19:05:11.987Z"}
+{"level":"info","message":{"method":"POST","path":"/users","requestId":"04a07afb-8230-410d-b140-82231186ea13","time":"2025-12-15T19:05:16.980Z"},"timestamp":"2025-12-15T19:05:16.980Z"}
+{"level":"info","message":"::1 - - [15/Dec/2025:19:05:17 +0000] \"POST /users HTTP/1.1\" 201 154 \"-\" \"PostmanRuntime/7.49.1\"","timestamp":"2025-12-15T19:05:17.081Z"}
+{"level":"info","message":{"method":"DELETE","path":"/users/21","requestId":"9de83eec-6183-485a-8015-d455b097c7cd","time":"2025-12-15T19:07:13.558Z"},"timestamp":"2025-12-15T19:07:13.559Z"}
+{"level":"info","message":"::1 - - [15/Dec/2025:19:07:13 +0000] \"DELETE /users/21 HTTP/1.1\" 204 - \"-\" \"PostmanRuntime/7.49.1\"","timestamp":"2025-12-15T19:07:13.940Z"}
+{"level":"info","message":{"method":"POST","path":"/users","requestId":"34c0bdb7-518b-4359-adb3-0e7ad3e13899","time":"2025-12-15T19:07:18.544Z"},"timestamp":"2025-12-15T19:07:18.544Z"}
+{"level":"info","message":"::1 - - [15/Dec/2025:19:07:18 +0000] \"POST /users HTTP/1.1\" 201 154 \"-\" \"PostmanRuntime/7.49.1\"","timestamp":"2025-12-15T19:07:18.634Z"}

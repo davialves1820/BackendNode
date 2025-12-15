@@ -12,6 +12,8 @@ import UsersController from './app/controllers/UserController.js';
 import SessionsController from './app/controllers/SessionsController.js';
 import FilesController from "./app/controllers/FilesController.js";
 import { createContactSchema, updateContactSchema } from './app/validators/contact.schema.js';
+import { createCustomersSchema, updateCustomersSchema } from "./app/validators/customers.schema.js";
+import { createUserSchema, updateUserSchema } from "./app/validators/user.schema.js";
 import validate from './app/middlewares/validate.js';
 import HealthController from "./app/controllers/HealthController.js";
 
@@ -28,8 +30,8 @@ routes.use(auth);
 // Customers routes
 routes.get("/customers", CustomersController.index);
 routes.get("/customers/:id", CustomersController.show);
-routes.post("/customers", role([ROLES.ADMIN, ROLES.MANAGER]), CustomersController.create);
-routes.put("/customers/:id", role([ROLES.ADMIN, ROLES.MANAGER]), CustomersController.update);
+routes.post("/customers", role([ROLES.ADMIN, ROLES.MANAGER]), validate(createCustomersSchema), CustomersController.create);
+routes.put("/customers/:id", role([ROLES.ADMIN, ROLES.MANAGER]), validate(updateCustomersSchema), CustomersController.update);
 routes.delete("/customers/:id", role([ROLES.ADMIN]), CustomersController.delete);
 
 // Contacts routes
@@ -53,8 +55,8 @@ routes.delete("/customers/:customerId/contacts/:id", role([ROLES.ADMIN, ROLES.MA
 // Users routes
 routes.get("/users", role([ROLES.ADMIN]), UsersController.index);
 routes.get("/users/:id", role([ROLES.ADMIN]), UsersController.show);
-routes.post("/users", UsersController.create);
-routes.put("/users/:id", role([ROLES.ADMIN]), UsersController.update);
+routes.post("/users", role([ROLES.ADMIN]), validate(createUserSchema), UsersController.create);
+routes.put("/users/:id", role([ROLES.ADMIN]), validate(updateUserSchema), UsersController.update);
 routes.delete("/users/:id", role([ROLES.ADMIN]), UsersController.delete);
 
 // File upload

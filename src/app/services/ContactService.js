@@ -1,5 +1,4 @@
 import AppError from "../errors/AppError.js";
-import Contact from "../models/Contact.js";
 import ContactRepository from "../repositories/ContactRepository.js";
 
 class ContactService {
@@ -9,7 +8,11 @@ class ContactService {
 
     async get(customerId, id) {
         const contact = await ContactRepository.findById(customerId, id);
-        if (!contact) throw new AppError("Contact not found", 404);
+
+        if (!contact) {
+            throw new AppError("Contact not found", 404);
+        }
+
         return contact;
     }
 
