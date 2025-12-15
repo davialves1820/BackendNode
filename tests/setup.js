@@ -1,4 +1,5 @@
 import database from "../src/database/index.js";
+import User from "../src/app/models/User.js";
 
 const WAIT = ms => new Promise(r => setTimeout(r, ms));
 
@@ -10,7 +11,7 @@ async function waitForDatabase() {
             await database.connection.authenticate();
             console.log("📌 Banco disponível para testes");
             return;
-        } catch (err) {
+        } catch {
             console.log("⏳ Aguardando banco subir...");
             attempts--;
             await WAIT(1000);
@@ -23,8 +24,6 @@ async function waitForDatabase() {
 export default async () => {
     await waitForDatabase();
     await database.connection.sync({ force: true });
-
-    const { User } = database.connection.models;
 
     await User.create({
         name: "Davi",
