@@ -1,6 +1,6 @@
 import request from "supertest";
-import app from "../../src/app";
-import User from "../../src/app/models/User";
+import app from "../../src/app.js";
+import User from "../../src/app/models/User.js";
 import jwt from "jsonwebtoken";
 import { ROLES } from "../../src/app/constants/roles.js";
 

@@ -21,12 +21,7 @@ class ContactService {
     }
 
     async update({ customerId, id, data }) {
-        const contact = await Contact.findOne({
-            where: {
-                id,
-                customer_id: customerId,
-            },
-        });
+        const contact = await ContactRepository.findById(customerId, id);
 
         if (!contact) {
             throw new AppError("Contact not found", 404);

@@ -1,5 +1,5 @@
-import UserController from "../../src/app/controllers/UserController";
-import User from "../../src/app/models/User";
+import UserController from "../../src/app/controllers/UserController.js";
+import User from "../../src/app/models/User.js";
 
 jest.mock("../../src/app/models/User");
 

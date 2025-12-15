@@ -1,4 +1,4 @@
-import database from "../../src/database";
+import database from "../../src/database/index.js";
 
 beforeAll(async () => {
   // Conecta ao banco antes de tudo

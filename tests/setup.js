@@ -21,15 +21,14 @@ async function waitForDatabase() {
     throw new Error("❌ Banco de testes não respondeu a tempo");
 }
 
-export default async () => {
+module.exports = async () => {
     await waitForDatabase();
     await database.connection.sync({ force: true });
 
-    // usuário base para testes de autenticação
+    // cria o usuário para o teste de login
     await User.create({
         name: "Davi",
         email: "davi@gmail.com",
-        password: "12345678",
-        role: "ADMIN",
+        password: "12345678"
     });
 };
