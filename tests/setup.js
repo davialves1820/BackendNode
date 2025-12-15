@@ -1,5 +1,4 @@
 import database from "../src/database/index.js";
-import User from "../src/app/models/User.js";
 
 const WAIT = ms => new Promise(r => setTimeout(r, ms));
 
@@ -25,7 +24,8 @@ export default async () => {
     await waitForDatabase();
     await database.connection.sync({ force: true });
 
-    // usuário base para testes de autenticação
+    const { User } = database.connection.models;
+
     await User.create({
         name: "Davi",
         email: "davi@gmail.com",
