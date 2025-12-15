@@ -1,5 +1,5 @@
-import CustomerController from "../../src/app/controllers/CustomersController";
-import Customer from "../../src/app/models/Customer";
+import CustomerController from "../../src/app/controllers/CustomersController.js";
+import Customer from "../../src/app/models/Customer.js";
 
 jest.mock("../../src/app/models/Customer");
 
