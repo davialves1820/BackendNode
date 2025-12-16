@@ -20,13 +20,17 @@ class UserService {
     }
 
     async create(data) {
-        const { id, name, email, role, createdAt, updatedAt } = await UserRepository.create(data);
+        try {
+            const user = await UserRepository.create(data);
 
-        await Queue.add(DummyJob.key, { message: "HELLO JOBS" });
-        await Queue.add(WelcomeEmailJob.key, { name, email });
-        console.log("Chamou EMAIL");
+            await Queue.add(DummyJob.key, { message: "HELLO JOBS" });
+            await Queue.add(WelcomeEmailJob.key, { name: user.name, email: user.email });
+            console.log("Chamou EMAIL");
 
-        return { id, name, email, role, createdAt, updatedAt };
+            return user;
+        } catch (err) {
+            console.error(err);
+        }
     }
 
     async update({ id, data }) {

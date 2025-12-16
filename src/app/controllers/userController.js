@@ -21,11 +21,11 @@ class UsersController {
     }
 
     async create(req, res) {
-        console.log("DAVI");
+        console.log("DummyJob");
         const user = await UsersService.create(
             req.body
         );
-        console.log("DAVI");
+
         return res.status(201).json(user);
     }
 

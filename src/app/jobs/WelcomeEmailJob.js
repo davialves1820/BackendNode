@@ -5,22 +5,34 @@ class WelcomeEmailJob {
         return "WelcomeEmail";
     }
 
-    async handle({ data }) {
-        try {
-            const { name, email } = data;
-
-            await Mail.send({
-                to: email,
-                subject: "Bem-vindo(a)",
-                text: `Olá ${name}, bem vindo ao nosso sistema.`,
-            });
-
-            console.log("📧 Email enviado para:", email);
-        } catch (err) {
-            console.error("❌ Erro ao enviar email:", err);
-        }
+    get options() {
+        return {
+            attempts: 3,
+            backoff: {
+                type: "fixed",
+                delay: 5000, // 5s
+            },
+            timeout: 10000, // 10s
+            removeOnSuccess: true,
+            removeOnFailure: false,
+        };
     }
 
+    async handle({ data }) {
+        const { name, email } = data;
+
+        if (!email || !name) {
+            throw new Error("Missing email or name");
+        }
+
+        await Mail.send({
+            to: email,
+            subject: "Bem-vindo(a)",
+            text: `Olá ${name}, bem vindo ao nosso sistema.`,
+        });
+
+        console.log(`📧 Welcome email sent to ${email}`);
+    }
 }
 
 export default new WelcomeEmailJob();

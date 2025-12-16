@@ -1,13 +1,22 @@
-
 class DummyJob {
     get key() {
-        return 'dummy';
+        return "dummy";
+    }
+
+    get options() {
+        return {
+            removeOnSuccess: true,
+        };
     }
 
     async handle({ data }) {
         const { message } = data;
 
-        console.log(message);
+        if (!message) {
+            throw new Error("Message is required");
+        }
+
+        console.log(`🧪 DummyJob: ${message}`);
     }
 }
 
