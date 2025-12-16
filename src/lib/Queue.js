@@ -7,36 +7,60 @@ const jobs = [DummyJob, WelcomeEmailJob];
 class Queue {
     constructor() {
         this.queues = {};
-        this.init();
+        this.initialized = false;
+        this.processing = false;
     }
 
     init() {
-        jobs.forEach(({ key, handle }) => {
-            this.queues[key] = {
-                bee: new Bee(key, {
-                    redis: {
-                        host: "localhost",
-                        port: 6379,
-                    }
-                }),
-                handle,
+        if (this.initialized) return;
+
+        jobs.forEach(job => {
+            const bee = new Bee(job.key, {
+                redis: { host: "localhost", port: 6379 },
+            });
+
+            this.queues[job.key] = {
+                bee,
+                job,
             };
         });
+
+        this.initialized = true;
     }
 
-    add(queue, jobs) {
-        return this.queues[queue].bee.createJob(jobs).save();
-    }
 
     processQueue() {
-        jobs.forEach(job => {
-            const { bee, handle } = this.queues[job.key];
-            bee.on("failed", this.handleFailure).process(handle);
+        if (this.processing) return;
+        this.processing = true;
+
+        this.init();
+
+        Object.values(this.queues).forEach(({ bee, job }) => {
+            bee.process(job.handle.bind(job));
+
+            bee.on("failed", (jobInstance, err) => {
+                console.error(`❌ Queue ${job.key} failed:`, err);
+            });
         });
     }
 
-    handleFailure(job, err) {
-        console.error(`Queue ${job.key} failed:`, err);
+    add(queueKey, data) {
+        this.init(); // 👈 GARANTE que a fila exista
+
+        const queue = this.queues[queueKey];
+
+        if (!queue) {
+            throw new Error(`Queue ${queueKey} not found`);
+        }
+
+        return queue.bee.createJob(data).save();
+    }
+
+
+    async shutdown() {
+        for (const { bee } of Object.values(this.queues)) {
+            await bee.close();
+        }
     }
 }
 
