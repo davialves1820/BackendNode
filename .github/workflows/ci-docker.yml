@@ -22,12 +22,10 @@ jobs:
         run: npm ci
 
       - name: Start test database
-        run: docker-compose -f docker-compose.test.yml up -d
+        run: docker compose -f docker-compose.test.yml up -d
 
       - name: Wait for database
-        run: |
-          echo "Aguardando Postgres..."
-          sleep 10
+        run: sleep 10
 
       - name: Run tests
         env:
@@ -41,4 +39,4 @@ jobs:
 
       - name: Stop test database
         if: always()
-        run: docker-compose -f docker-compose.test.yml down -v
+        run: docker compose -f docker-compose.test.yml down -v
