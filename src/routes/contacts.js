@@ -2,7 +2,7 @@ import { Router } from "express";
 import { ROLES } from "../app/constants/roles.js";
 import role from "../app/middlewares/role.js";
 import validate from "../app/middlewares/validate.js";
-import ContactController from "../app/controllers/ContactController.js";
+import ContactController from "../app/controllers/contactController.js";
 import { createContactSchema, updateContactSchema } from "../app/validators/contact.schema.js";
 
 const routes = new Router();
