@@ -206,3 +206,9 @@
 {"level":"info","message":"::ffff:127.0.0.1 - - [17/Dec/2025:17:09:07 +0000] \"POST /customers HTTP/1.1\" 201 155 \"-\" \"-\"","timestamp":"2025-12-17T17:09:07.505Z"}
 {"level":"info","message":{"method":"POST","path":"/sessions","requestId":"66cb3df3-4582-4dd8-9e9e-3ee6de8e6fc4","time":"2025-12-17T17:09:08.223Z"},"timestamp":"2025-12-17T17:09:08.223Z"}
 {"level":"info","message":"::ffff:127.0.0.1 - - [17/Dec/2025:17:09:08 +0000] \"POST /sessions HTTP/1.1\" 200 237 \"-\" \"-\"","timestamp":"2025-12-17T17:09:08.253Z"}
+{"level":"info","message":{"method":"GET","path":"/customers","requestId":"da0a6cfb-a51e-4027-abdc-8b924ba526ad","time":"2025-12-17T17:25:04.854Z"},"timestamp":"2025-12-17T17:25:04.856Z"}
+{"level":"info","message":"::ffff:127.0.0.1 - - [17/Dec/2025:17:25:04 +0000] \"GET /customers HTTP/1.1\" 200 2 \"-\" \"-\"","timestamp":"2025-12-17T17:25:04.891Z"}
+{"level":"info","message":{"method":"POST","path":"/customers","requestId":"a023ada7-bfa5-43eb-b705-382cdd3a6d82","time":"2025-12-17T17:25:04.938Z"},"timestamp":"2025-12-17T17:25:04.938Z"}
+{"level":"info","message":"::ffff:127.0.0.1 - - [17/Dec/2025:17:25:04 +0000] \"POST /customers HTTP/1.1\" 201 155 \"-\" \"-\"","timestamp":"2025-12-17T17:25:04.952Z"}
+{"level":"info","message":{"method":"POST","path":"/sessions","requestId":"5058300a-419b-4af7-91f3-be550f8375c9","time":"2025-12-17T17:25:06.709Z"},"timestamp":"2025-12-17T17:25:06.709Z"}
+{"level":"info","message":"::ffff:127.0.0.1 - - [17/Dec/2025:17:25:06 +0000] \"POST /sessions HTTP/1.1\" 200 237 \"-\" \"-\"","timestamp":"2025-12-17T17:25:06.741Z"}

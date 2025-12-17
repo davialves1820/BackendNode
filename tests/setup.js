@@ -1,5 +1,5 @@
 import database from "../src/database/index.js";
-import User from "../src/app/models/User.js";
+import User from "../src/app/models/user.js";
 
 const WAIT = ms => new Promise(r => setTimeout(r, ms));
 

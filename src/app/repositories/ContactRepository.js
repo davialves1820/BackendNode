@@ -1,5 +1,5 @@
-import Contact from "../models/Contact.js";
-import Customer from "../models/Customer.js";
+import Contact from "../models/contact.js";
+import Customer from "../models/customer.js";
 
 class ContactRepository {
     findAll({ where, order, limit, offset }) {
