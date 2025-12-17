@@ -18,6 +18,7 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 20
+          cache: npm
 
       - name: Install dependencies
         run: npm ci
@@ -25,26 +26,24 @@ jobs:
       - name: Start test database
         run: docker compose -f docker-compose.test.yml up -d
 
-      - name: Run tests
-        run: npm test
-
-      - name: Stop test database
-        if: always()
-        run: docker compose -f docker-compose.test.yml down -v
-
       - name: Wait for database
         run: sleep 10
 
       - name: Run tests
         env:
           NODE_ENV: test
-          SECRET: test_secret
-          EXPIRESIN: 7d
+          JWT_SECRET: test_secret
+          JWT_EXPIRES_IN: 7d
           DB_HOST: localhost
           DB_PORT: 5433
           DB_USER: postgres
           DB_PASS: postgres
           DB_NAME: databaseTeste
+        run: npm test
+
+      - name: Stop test database
+        if: always()
+        run: docker compose -f docker-compose.test.yml down -v
 
   build:
     needs: test
