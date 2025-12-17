@@ -32,8 +32,8 @@ jobs:
       - name: Run tests
         env:
           NODE_ENV: test
-          JWT_SECRET: test_secret
-          JWT_EXPIRES_IN: 7d
+          SECRET: test_secret
+          EXPIRESIN: 7d
           DB_HOST: localhost
           DB_PORT: 5433
           DB_USER: postgres
