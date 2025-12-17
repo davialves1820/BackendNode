@@ -10,7 +10,7 @@ class CustomersController {
         const order = getOrder(req.query.sort, ["name", "email", "createdAt"]);
 
         const data = await CustomersService.list({ where, order, limit, offset });
-        return res.json(data);
+        return res.status(200).json(data);
     }
 
     async show(req, res) {

@@ -1,17 +1,25 @@
 import UserController from "../../src/app/controllers/UserController.js";
 import User from "../../src/app/models/User.js";
+import AppError from "../../src/app/errors/AppError.js";
 
-jest.mock("../../src/app/models/User");
+jest.mock("../../src/app/models/User.js");
 
 describe("UserController Unit", () => {
-    it("deve retornar erro se o usuário não existir", async () => {
+    it("deve lançar erro se o usuário não existir", async () => {
+        // Arrange
         User.findByPk.mockResolvedValue(null);
 
         const req = { params: { id: 1 } };
-        const res = { status: jest.fn().mockReturnThis(), json: jest.fn() };
+        const res = {};
 
-        await UserController.show(req, res);
-
-        expect(res.status).toHaveBeenCalledWith(404);
+        // Act + Assert
+        try {
+            await UserController.show(req, res);
+            fail("Erro não foi lançado");
+        } catch (error) {
+            expect(error).toBeInstanceOf(AppError);
+            expect(error.message).toBe("User not found");
+            expect(error.statusCode).toBe(404);
+        }
     });
 });
