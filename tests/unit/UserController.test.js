@@ -2,7 +2,7 @@ import UserController from "../../src/app/controllers/userController.js";
 import User from "../../src/app/models/user.js";
 import AppError from "../../src/app/errors/AppError.js";
 
-jest.mock("../../src/app/models/User.js");
+jest.mock("../../src/app/models/user.js");
 
 describe("UserController Unit", () => {
     it("deve lançar erro se o usuário não existir", async () => {

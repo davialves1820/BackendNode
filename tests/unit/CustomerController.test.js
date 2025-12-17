@@ -1,7 +1,7 @@
 import CustomerController from "../../src/app/controllers/customersController.js";
 import Customer from "../../src/app/models/customer.js";
 
-jest.mock("../../src/app/models/Customer.js");
+jest.mock("../../src/app/models/customer.js");
 
 describe("CustomerController Unit", () => {
     it("index deve retornar lista de clientes", async () => {
