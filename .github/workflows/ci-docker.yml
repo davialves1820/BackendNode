@@ -30,6 +30,7 @@ jobs:
       - name: Run tests
         env:
           NODE_ENV: test
+          SECRET: test_secret
           DB_HOST: localhost
           DB_PORT: 5433
           DB_USER: postgres
