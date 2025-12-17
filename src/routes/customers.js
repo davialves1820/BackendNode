@@ -2,7 +2,7 @@ import { Router } from "express";
 import { ROLES } from "../app/constants/roles.js";
 import role from "../app/middlewares/role.js";
 import validate from "../app/middlewares/validate.js";
-import CustomersController from "../app/controllers/CustomersController.js";
+import CustomersController from "../app/controllers/customersController.js";
 import { createCustomersSchema, updateCustomersSchema } from "../app/validators/customers.schema.js";
 
 const routes = new Router();

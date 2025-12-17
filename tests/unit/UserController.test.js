@@ -1,4 +1,4 @@
-import UserController from "../../src/app/controllers/UserController.js";
+import UserController from "../../src/app/controllers/userController.js";
 import User from "../../src/app/models/user.js";
 import AppError from "../../src/app/errors/AppError.js";
 
