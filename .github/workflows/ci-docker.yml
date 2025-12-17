@@ -2,8 +2,9 @@ name: CI
 
 on:
   push:
-    branches: [ main, develop ]
+    branches: [ "main" ]
   pull_request:
+    branches: [ "main" ]
 
 jobs:
   test:
@@ -24,21 +25,32 @@ jobs:
       - name: Start test database
         run: docker compose -f docker-compose.test.yml up -d
 
-      - name: Wait for database
-        run: sleep 10
-
       - name: Run tests
-        env:
-          NODE_ENV: test
-          SECRET: test_secret
-          EXPIRESIN: 7d
-          DB_HOST: localhost
-          DB_PORT: 5433
-          DB_USER: postgres
-          DB_PASS: postgres
-          DB_NAME: databaseTeste
         run: npm test
 
       - name: Stop test database
         if: always()
         run: docker compose -f docker-compose.test.yml down -v
+
+  build:
+    needs: test
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Login no Docker Hub
+        uses: docker/login-action@v3
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+
+      - name: Build e Push da imagem
+        uses: docker/build-push-action@v5
+        with:
+          context: .
+          push: true
+          tags: |
+            ${{ secrets.DOCKERHUB_USERNAME }}/backendnode:latest
+            ${{ secrets.DOCKERHUB_USERNAME }}/backendnode:${{ github.sha }}
