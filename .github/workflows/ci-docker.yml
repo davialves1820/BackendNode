@@ -31,6 +31,7 @@ jobs:
         env:
           NODE_ENV: test
           SECRET: test_secret
+          EXPIRESIN: 7d
           DB_HOST: localhost
           DB_PORT: 5433
           DB_USER: postgres
