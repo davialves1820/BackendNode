@@ -2,7 +2,7 @@ name: CI
 
 on:
   push:
-    branches: [ "main" ]
+    branches: [ "main", "develop" ]
   pull_request:
     branches: [ "main" ]
 
@@ -31,6 +31,20 @@ jobs:
       - name: Stop test database
         if: always()
         run: docker compose -f docker-compose.test.yml down -v
+
+      - name: Wait for database
+        run: sleep 10
+
+      - name: Run tests
+        env:
+          NODE_ENV: test
+          SECRET: test_secret
+          EXPIRESIN: 7d
+          DB_HOST: localhost
+          DB_PORT: 5433
+          DB_USER: postgres
+          DB_PASS: postgres
+          DB_NAME: databaseTeste
 
   build:
     needs: test
