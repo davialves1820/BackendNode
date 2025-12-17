@@ -1,10 +1,11 @@
 import CustomerController from "../../src/app/controllers/CustomersController.js";
 import Customer from "../../src/app/models/Customer.js";
 
-jest.mock("../../src/app/models/Customer");
+jest.mock("../../src/app/models/Customer.js");
 
 describe("CustomerController Unit", () => {
     it("index deve retornar lista de clientes", async () => {
+        // Arrange
         Customer.findAll.mockResolvedValue([{ id: 1, name: "Teste" }]);
 
         const req = { query: {} };
@@ -13,9 +14,10 @@ describe("CustomerController Unit", () => {
             json: jest.fn(),
         };
 
+        // Act
         await CustomerController.index(req, res);
-        console.log(res.body);
 
+        // Assert
         expect(res.status).toHaveBeenCalledWith(200);
         expect(res.json).toHaveBeenCalledWith([{ id: 1, name: "Teste" }]);
     });
