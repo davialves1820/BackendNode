@@ -1,6 +1,6 @@
 import request from "supertest";
 import app from "../../src/app.js";
-import User from "../../src/app/models/User.js";
+import User from "../../src/app/models/user.js";
 import database from "../../src/database/index.js";
 
 describe("Sessions", () => {

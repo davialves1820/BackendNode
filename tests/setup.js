@@ -21,7 +21,7 @@ async function waitForDatabase() {
     throw new Error("❌ Banco de testes não respondeu a tempo");
 }
 
-module.exports = async () => {
+export default async function globalSetup() {
     await waitForDatabase();
     await database.connection.sync({ force: true });
 
@@ -29,6 +29,6 @@ module.exports = async () => {
     await User.create({
         name: "Davi",
         email: "davi@gmail.com",
-        password: "12345678"
+        password: "12345678",
     });
-};
+}
