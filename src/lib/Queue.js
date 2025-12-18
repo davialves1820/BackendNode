@@ -16,7 +16,15 @@ class Queue {
 
         jobs.forEach(job => {
             const bee = new Bee(job.key, {
-                redis: { host: process.env.REDIS_HOST, port: process.env.REDIS_PORT },
+                redis: {
+                    host: process.env.REDIS_HOST,
+                    port: Number(process.env.REDIS_PORT),
+                    retryStrategy(times) {
+                        const delay = Math.min(times * 100, 2000);
+                        console.log(`[Redis] retry ${times} em ${delay}ms`);
+                        return delay;
+                    },
+                },
             });
 
             this.queues[job.key] = {

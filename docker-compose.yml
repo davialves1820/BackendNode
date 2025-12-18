@@ -2,9 +2,8 @@ version: "3.8"
 
 services:
   api:
-    image: learn-nodejs:latest
+    image: davialves1820/backendnode:latest
     container_name: learn-nodejs-api
-    build: .
     ports:
       - "3000:3000"
     environment:
@@ -27,22 +26,16 @@ services:
 
   postgres:
     image: postgres:16
-    container_name: learn-nodejs-postgres
     environment:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: postgres
       POSTGRES_DB: database
-    ports:
-      - "5432:5432"
     volumes:
       - pgdata:/var/lib/postgresql/data
     restart: unless-stopped
 
   redis:
     image: redis:7
-    container_name: learn-nodejs-redis
-    ports:
-      - "6379:6379"
     restart: unless-stopped
 
 volumes:
