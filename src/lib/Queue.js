@@ -16,7 +16,7 @@ class Queue {
 
         jobs.forEach(job => {
             const bee = new Bee(job.key, {
-                redis: { host: "localhost", port: 6379 },
+                redis: { host: process.env.REDIS_HOST, port: process.env.REDIS_PORT },
             });
 
             this.queues[job.key] = {
