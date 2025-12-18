@@ -18,6 +18,24 @@ Request → Routes → Controllers → Services → Repositories → Models → 
 
 ---
 
+## 📦 Tecnologias Utilizadas
+
+* Node.js
+* Express
+* Sequelize
+* PostgreSQL
+* Redis
+* Bee-Queue
+* JWT
+* Docker
+* Swagger
+* **Mailtrap (envio de e-mails em ambiente de desenvolvimento)**
+* **Multer (upload de arquivos)**
+* **Winston + Morgan (logs estruturados)**
+* **Jest (testes automatizados)**
+
+---
+
 ## 📁 Estrutura de Pastas
 
 ```
@@ -501,24 +519,6 @@ http://localhost:3000/docs
 ```
 
 A documentação é mantida próxima ao código, utilizando comentários `@swagger` diretamente nos **controllers**, garantindo que ela esteja sempre sincronizada com a implementação.
-
----
-
-## 📦 Tecnologias Utilizadas
-
-* Node.js
-* Express
-* Sequelize
-* PostgreSQL
-* Redis
-* Bee-Queue
-* JWT
-* Docker
-* Swagger
-* **Mailtrap (envio de e-mails em ambiente de desenvolvimento)**
-* **Multer (upload de arquivos)**
-* **Winston + Morgan (logs estruturados)**
-* **Jest (testes automatizados)**
 
 ---
 
