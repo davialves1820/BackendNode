@@ -6,11 +6,11 @@ export default (err, req, res, next) => {
         return res.status(err.status).json({ error: err.message });
     }
 
-    /*logger.error({
+    logger.error({
         requestId: req.requestId,
         message: err.message,
         stack: err.stack,
-    });*/
+    });
 
     return res.status(500).json({
         error: "Internal server error",

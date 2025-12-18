@@ -19,11 +19,6 @@ class Queue {
                 redis: {
                     host: process.env.REDIS_HOST,
                     port: Number(process.env.REDIS_PORT),
-                    retryStrategy(times) {
-                        const delay = Math.min(times * 100, 2000);
-                        console.log(`[Redis] retry ${times} em ${delay}ms`);
-                        return delay;
-                    },
                 },
             });
 
@@ -53,7 +48,7 @@ class Queue {
     }
 
     add(queueKey, data) {
-        this.init(); // 👈 GARANTE que a fila exista
+        this.init(); // GARANTE que a fila exista
 
         const queue = this.queues[queueKey];
 
@@ -62,6 +57,25 @@ class Queue {
         }
 
         return queue.bee.createJob(data).save();
+    }
+
+    async isRedisUp() {
+        try {
+            this.init();
+
+            const queues = Object.values(this.queues);
+
+            if (!queues.length) {
+                return false;
+            }
+
+            // criação do client e testa conexão
+            await queues[0].bee.ready();
+
+            return true;
+        } catch (err) {
+            return false;
+        }
     }
 
 

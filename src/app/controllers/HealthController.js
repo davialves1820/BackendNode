@@ -1,7 +1,29 @@
 import Database from "../../database/index.js";
 import Queue from "../../lib/Queue.js";
 
+/**
+ * @swagger
+ * tags:
+ *   name: Health
+ *   description: Monitoramento da aplicação
+ */
+
+
 class HealthController {
+
+    /**
+     * @swagger
+     * /health:
+     *   get:
+     *     summary: Retorna o status da aplicação e serviços
+     *     tags: [Health]
+     *     responses:
+     *       200:
+     *         description: Todos os serviços operacionais
+     *       503:
+     *         description: Algum serviço indisponível
+     */
+
     async index(req, res) {
         const health = {
             status: "ok",
@@ -25,18 +47,15 @@ class HealthController {
 
         // ✅ Redis (Bee Queue)
         try {
-            const queues = Object.values(Queue.queues);
+            const redisUp = await Queue.isRedisUp();
 
-            if (!queues.length) {
-                throw new Error("No queues initialized");
+            health.services.redis = redisUp ? "up" : "down";
+
+            if (!redisUp) {
+                health.status = "error";
             }
-
-            // Bee Queue expõe o client do Redis
-            const redisClient = queues[0].bee.client;
-            await redisClient.ping();
-
-            health.services.redis = "up";
         } catch (err) {
+            console.log(err)
             health.status = "error";
             health.services.redis = "down";
         }

@@ -15,7 +15,6 @@ describe("Customers Integration", () => {
             role: ROLES.ADMIN,
         });
 
-        // 🔑 TOKEN AGORA TEM ROLE
         token = jwt.sign(
             {
                 id: user.id,

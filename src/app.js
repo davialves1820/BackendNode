@@ -23,10 +23,10 @@ class App {
         this.server.use(express.json());
         this.server.use(express.urlencoded({ extended: false }));
 
-        // 🔹 Logger custom (requestId + contexto)
+        // Logger custom (requestId + contexto)
         this.server.use(loggerMiddleware);
 
-        // 🔹 Morgan + Winston
+        // Morgan + Winston
         this.server.use(morganMiddleware);
 
         // Swagger
